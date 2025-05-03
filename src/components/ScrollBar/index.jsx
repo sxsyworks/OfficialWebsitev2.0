@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CurveLineImg from './images/curveLine.png';
 import PolygonImg from './images/Polygon.png';
 import styles from './index.less';
@@ -19,24 +19,25 @@ const items = [
 ];
 
 const ScrollView = () => {
-  const initialIndex = 2; // Start at index 2 (third item, "通用建库试剂盒")
+  const initialIndex = 2;
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const scrollRef = useRef(null);
 
-  const handleScroll = () => {
-    const container = scrollRef.current;
-    const itemHeight = container.scrollHeight / items.length;
-    const scrollMiddle = container.scrollTop + container.clientHeight / 2;
-    const index = Math.floor(scrollMiddle / itemHeight);
-    if (index >= 2 && index <= 9) {
-      setActiveIndex(index); // Only update active index if it's between 2 and 9
-    }
-  };
-
   useEffect(() => {
     const container = scrollRef.current;
-    const itemHeight = container.scrollHeight / items.length;
-    container.scrollTop = itemHeight * activeIndex - container.clientHeight / 2;
+    const activeItem = container.children[activeIndex];
+
+    if (activeItem) {
+      const containerHeight = container.clientHeight;
+      const itemOffsetTop = activeItem.offsetTop;
+      const itemHeight = activeItem.clientHeight;
+
+      const scrollTop = itemOffsetTop - containerHeight / 2 + itemHeight / 2;
+      container.scrollTo({
+        top: scrollTop,
+        behavior: 'smooth',
+      });
+    }
   }, [activeIndex]);
 
   const calculateStyles = (index) => {
@@ -45,49 +46,63 @@ const ScrollView = () => {
         paddingLeft: '0px',
         filter: 'opacity(1)',
       };
+    } else if (Math.abs(index - activeIndex) === 1) {
+      return {
+        paddingLeft: '15px',
+        filter: 'opacity(0.6)',
+      };
+    } else {
+      return {
+        paddingLeft: '30px',
+        filter: 'opacity(0.2)',
+      };
     }
-    const diff = Math.abs(index - activeIndex);
-    return {
-      paddingLeft: `${diff * 15}px`,
-      filter: `opacity(${1 - diff * 0.4})`,
-    };
   };
 
-  const paginationItems = items.slice(2, 10); // Items from index 2 to 9 (inclusive)
+  const handleUpArrowClick = () => {
+    if (activeIndex > 2) {
+      setActiveIndex(activeIndex - 1);
+    }
+  };
+
+  const handleDownArrowClick = () => {
+    if (activeIndex < 9) {
+      setActiveIndex(activeIndex + 1);
+    }
+  };
 
   return (
     <div className={styles.mainContainer}>
       <div className={styles.wrapper}>
-        {/* Vertical Pagination */}
         <div className={styles.verticalPagination}>
-          <div className={styles.arrow}>
+          <div className={styles.arrow} onClick={handleUpArrowClick}>
             ▲
           </div>
-          {paginationItems.map((_, index) => (
-            <div
-              key={index}
-              className={`${styles.dot} ${index === activeIndex - 2 ? styles.activeDot : ''}`} // Adjust for the offset by 2
-            />
+          {items.slice(2, 10).map((_, index) => (
+            <div key={index} className={`${styles.dot} ${index === activeIndex - 2 ? styles.activeDot : ''}`} />
           ))}
-          <div className={styles.arrow}>
+          <div className={styles.arrow} onClick={handleDownArrowClick}>
             ▼
           </div>
         </div>
 
-        {/* Text List */}
-        <div className={styles.textList} onScroll={handleScroll} ref={scrollRef}>
+        <div className={styles.textList} ref={scrollRef}>
           {items.map((item, index) => (
             <div
               key={index}
               className={`${styles.textItem} ${index === activeIndex ? styles.active : styles.inactive}`}
               style={calculateStyles(index)}
+              onClick={() => {
+                if (index >= 2 && index <= 9) {
+                  setActiveIndex(index);
+                }
+              }}
             >
               {item.title}
             </div>
           ))}
         </div>
 
-        {/* Middle Design */}
         <div className={styles.middleLabel}>
           <div className={styles.container1}>
             <img src={PolygonImg} alt="Polygon" />
@@ -97,21 +112,32 @@ const ScrollView = () => {
           </div>
         </div>
 
-        {/* Product Image */}
         <div className={styles.imageBox}>
-          {items[activeIndex]?.image && (
-            <img src={items[activeIndex].image} alt={items[activeIndex].title} />
-          )}
+          {items[activeIndex]?.image && <img src={items[activeIndex].image} alt={items[activeIndex].title} />}
         </div>
       </div>
 
-      {/* Bottom Explanation */}
       <div className={styles.explanation}>
-        <div className={styles.exp1}>产品介绍</div>
-        <div className={styles.exp1}>适配芯片类型</div>
-        <div className={styles.exp1}>产品特点</div>
-        <div className={styles.exp1}>操作流程</div>
-        <div className={styles.exp1}>订购信息</div>
+        <div className={styles.row}>
+          <div className={styles.exp1}>产品介绍</div>
+          <div />
+        </div>
+        <div className={styles.row}>
+          <div className={styles.exp1}>适配芯片类型</div>
+          <div />
+        </div>
+        <div className={styles.row}>
+          <div className={styles.exp1}>产品特点</div>
+          <div />
+        </div>
+        <div className={styles.row}>
+          <div className={styles.exp1}>操作流程</div>
+          <div />
+        </div>
+        <div className={styles.row}>
+          <div className={styles.exp1}>订购信息</div>
+          <div />
+        </div>
       </div>
     </div>
   );
