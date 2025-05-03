@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import CurveLineImg from './images/curveLine.png';
-import DottedLine from './images/dottedLine.png';
 import PolygonImg from './images/Polygon.png';
 import styles from './index.less';
 
@@ -20,7 +19,7 @@ const items = [
 ];
 
 const ScrollView = () => {
-  const initialIndex = 6;
+  const initialIndex = 2; // Start at index 2 (third item, "通用建库试剂盒")
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const scrollRef = useRef(null);
 
@@ -29,14 +28,9 @@ const ScrollView = () => {
     const itemHeight = container.scrollHeight / items.length;
     const scrollMiddle = container.scrollTop + container.clientHeight / 2;
     const index = Math.floor(scrollMiddle / itemHeight);
-    setActiveIndex(index);
-  };
-
-  const handleDotClick = (index) => {
-    const container = scrollRef.current;
-    const itemHeight = container.scrollHeight / items.length;
-    container.scrollTop = itemHeight * index - container.clientHeight / 2;
-    setActiveIndex(index);
+    if (index >= 2 && index <= 9) {
+      setActiveIndex(index); // Only update active index if it's between 2 and 9
+    }
   };
 
   useEffect(() => {
@@ -59,22 +53,23 @@ const ScrollView = () => {
     };
   };
 
+  const paginationItems = items.slice(2, 10); // Items from index 2 to 9 (inclusive)
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.wrapper}>
         {/* Vertical Pagination */}
         <div className={styles.verticalPagination}>
-        <div className={styles.arrow}>
+          <div className={styles.arrow}>
             ▲
           </div>
-          {items.map((_, index) => (
+          {paginationItems.map((_, index) => (
             <div
               key={index}
-              className={`${styles.dot} ${index === activeIndex ? styles.activeDot : ''}`}
-              onClick={() => handleDotClick(index)}
+              className={`${styles.dot} ${index === activeIndex - 2 ? styles.activeDot : ''}`} // Adjust for the offset by 2
             />
           ))}
-          <div className={styles.arrow} onClick={() => handleArrowClick('down')}>
+          <div className={styles.arrow}>
             ▼
           </div>
         </div>

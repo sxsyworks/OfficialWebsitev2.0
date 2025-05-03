@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   height: 300px;
   justify-content: center;
   margin-right: 50px;
@@ -28,6 +28,7 @@
   color: #ffffff;
   font-size: 16px;
   cursor: pointer;
+  height: 24px;
   user-select: none;
   transition: transform 0.2s;
 }
@@ -37,8 +38,8 @@
 }
 
 .dot {
-  width: 3px;
-  height: 3px;
+  width: 2px;
+  height: 2px;
   border-radius: 50%;
   background-color: #a4c0f0;
   transition: background-color 0.3s ease;
@@ -46,17 +47,18 @@
 }
 
 .activeDot {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
 .textList {
-  width: 260px;
-  height: 220px;
+  width: 300px;
+  height: 300px;
   overflow-y: scroll;
   padding-right: 1rem;
+  margin-right: 3rem;
   scroll-behavior: smooth;
 
   &::-webkit-scrollbar {
@@ -64,20 +66,20 @@
   }
 
   .textItem {
-    padding: 1.3rem 0;
+    padding: 1.5rem 0;
     text-align: left;
     transition: all 0.3s ease;
     white-space: nowrap;
   }
 
   .active {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #fafafb;
     font-weight: bold;
   }
 
   .inactive {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #fafafb;
   }
 }
