@@ -1,0 +1,99 @@
+.banner1 {
+  display: flex;
+  height: 100vh;
+  padding: 0 10vw;
+
+  .text {
+    flex: 5;
+    padding-right: 7vw;
+
+    .title {
+      font-size: 2rem;
+      padding: 17vh 0 5.4vh;
+    }
+
+    .des {
+      font-size: 1rem;
+      line-height: 2rem;
+      color: #787878;
+      padding-bottom: 6vh;
+    }
+
+    .datas {
+      display: grid;
+      display: -ms-grid;
+      grid-template-columns: repeat(2, 1fr);
+      -ms-grid-columns: 50% 50%;
+      grid-gap: 2vw;
+      padding-bottom: 8vh;
+      .dataItem {
+        font-size: 1rem;
+        color: #787878;
+        opacity: 0;
+        -ms-grid-column: 1;
+        -ms-grid-row: 1;
+        .nums {
+          font-size: 3rem;
+          color: #51a8de;
+          line-height: 1.5;
+        }
+      }
+      .dataItem:nth-child(2) {
+        -ms-grid-column: 2;
+        -ms-grid-row: 1;
+      }
+      .dataItem:nth-child(3) {
+        -ms-grid-column: 1;
+        -ms-grid-row: 2;
+      }
+      .dataItem:nth-child(4) {
+        -ms-grid-column: 2;
+        -ms-grid-row: 2;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      font-size: 1rem;
+      border: 2px solid #51a8de;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      color: #51a8de;
+    }
+
+    .btn:hover {
+      border: 2px solid #51a8de;
+      background-color: #51a8de;
+      color: white;
+    }
+  }
+
+  .videoItem {
+    flex: 4;
+    margin: 5rem 0 5rem 2rem;
+    background: url('https://webjpg.qitantech.com/static/page/animations/perforation.gif') no-repeat;
+    background-size: contain;
+    background-position-y: center;
+
+    .video {
+      width: 90%;
+      height: auto;
+      display: block;
+      object-fit: fill;
+      mix-blend-mode: multiply;
+    }
+  }
+}
+
+.animate {
+  .dataItem {
+    animation: 'opacityZeroTo1' 1.5s linear forwards;
+    -webkit-animation: 'opacityZeroTo1' 1.5s linear forwards;
+  }
+}
+
+.page-en {
+  .text .title {
+    padding-top: 7vh;
+  }
+}

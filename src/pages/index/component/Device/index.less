@@ -1,0 +1,159 @@
+@import '~@/assets/styles/index.less';
+
+.deviceWrapper {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.intro {
+  height: 30vh;
+  background: linear-gradient(to right, #003599 0%, #4a98e1 60%, #bfd5ff 100%);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12vh;
+  box-sizing: border-box;
+  .title {
+    width: 33%;
+    opacity: 0;
+    text-align: right;
+    color: @white;
+    h3 {
+      font-size: 4rem;
+      line-height: 4rem;
+      margin-bottom: 0.5rem;
+      font-weight: 300;
+    }
+
+    h4 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      text-align: right;
+      letter-spacing: 0.2rem;
+    }
+  }
+
+  .info {
+    width: 33%;
+    display: flex;
+    justify-content: flex-start;
+    opacity: 0;
+    color: @white;
+    .item {
+      margin-right: 2vw;
+      .name {
+        font-size: 1.2rem;
+      }
+      .value {
+        font-size: 1.8rem;
+        font-weight: 300;
+        margin-top: -0.5rem;
+      }
+      .number {
+        font-size: 3.5rem;
+        margin-right: 5px;
+        margin-top: -0.5rem;
+      }
+    }
+  }
+}
+
+.device {
+  width: 33%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  user-select: none;
+  position: absolute;
+  top: 12vh;
+  left: 50%;
+  transform: translate(-50%, 0) !important;
+}
+
+.deviceItems {
+  display: flex;
+  transition: all 0.5s ease-in;
+}
+
+.deviceItem {
+  flex-shrink: 0;
+  width: 100%;
+  color: @black;
+  position: relative;
+  display: block;
+  opacity: 0;
+}
+
+.arrow(@isLeft: true) {
+  display: block;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  transform: rotate(if(@isLeft, -180deg, 0deg));
+  position: absolute;
+  top: calc(50% - 1.9rem);
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid @blue-deep;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 35%;
+    left: 27%;
+    line-height: 60px;
+    text-align: center;
+    width: 18px;
+    height: 18px;
+    border-right: 1px solid @blue-deep;
+    border-bottom: 1px solid @blue-deep;
+    transform: rotate(-45deg);
+  }
+  &:hover {
+    background-color: @blue-deep;
+    &::after {
+      border-right: 1px solid @white;
+      border-bottom: 1px solid @white;
+    }
+  }
+}
+.arrowLeft {
+  left: 25%;
+  .arrow();
+}
+.arrowRight {
+  right: 25%;
+  .arrow(false);
+}
+
+.btn {
+  position: absolute;
+  right: 0;
+  top: 15vh;
+  background-color: @white;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.1rem;
+  color: #0941a1;
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem 0 0 2rem;
+}
+.btn:hover {
+  border: 2px solid @blue-deep;
+  background-color: @blue-deep;
+  color: white;
+}
+
+.animate {
+  .title {
+    opacity: 1;
+    transition: all 1s ease-in;
+  }
+  .intro .info {
+    opacity: 1;
+    transition: all 2s ease-in 1s;
+  }
+  .intro .device {
+    opacity: 1;
+    transition: all 2s ease-in 2s;
+  }
+}

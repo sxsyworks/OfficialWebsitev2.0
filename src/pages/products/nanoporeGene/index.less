@@ -1,0 +1,181 @@
+@import '~@/assets/styles/index.less';
+.nanoporeGene {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5vh;
+  overflow-x: hidden;
+  .content {
+    width: 40vw;
+    margin: 0 auto;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #787878;
+    line-height: 2;
+    text-align: left;
+  }
+}
+.videoBox {
+  padding: 0 4vw;
+  video {
+    width: 100%;
+    height: auto;
+  }
+  img {
+    width: 100%;
+    @media (min-width: 961px) {
+      display: block;
+      width: 80%;
+      max-width: 984px;
+      margin: 0 auto;
+    }
+  }
+}
+.key {
+  text-align: center;
+  padding-bottom: 10vh;
+  .content {
+    display: flex;
+    justify-content: space-around;
+    padding: 5vh 8vw;
+    .advItem {
+      width: 10vw;
+      color: #787878;
+      animation-fill-mode: both;
+      .icon {
+        width: 3vw;
+        height: 3vw;
+        background-color: #e6fbff;
+        border-radius: 50%;
+        padding: 2vw;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 2vw auto;
+        margin: 0 auto;
+      }
+      .title {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: #51a8de;
+        letter-spacing: 0.2rem;
+        margin: 1rem 0;
+        display: block;
+        height: 3rem;
+      }
+      .advCon {
+        width: 12vw;
+        text-align: left;
+        font-size: 1rem;
+        line-height: 1.7rem;
+      }
+    }
+  }
+}
+.compare {
+  text-align: center;
+  padding: 0 10vw;
+  background-color: #fff;
+  .table {
+    margin-bottom: 25vh;
+    .row {
+      font-size: 1rem;
+      text-align: left;
+      font-weight: 400;
+      line-height: 2;
+      .title {
+        display: grid;
+        color: #51a8de;
+        grid-template-columns: repeat(2, 1fr);
+        p {
+          padding: 4vh 5vw 1vh;
+        }
+      }
+      .text {
+        .title();
+        color: #787878;
+        p {
+          padding: 1vh 5vw 2.5vh;
+        }
+      }
+    }
+    .row:first-child {
+      .title p {
+        font-size: 1.25rem;
+        font-weight: 500;
+        margin-bottom: 2vh;
+        text-align: center;
+      }
+    }
+    .row:nth-child(even) {
+      .title,
+      .text {
+        p {
+          background-color: #e6fbff;
+          background: linear-gradient(to right, #e6fbff, rgba(230, 251, 255, 0.2));
+        }
+      }
+    }
+    .row:nth-child(odd):not(:first-child) {
+      .title,
+      .text {
+        p {
+          background-color: #f6f6f6;
+          background: linear-gradient(to right, rgba(246, 246, 246, 0.502), rgba(246, 246, 246, 0.125));
+        }
+      }
+    }
+  }
+}
+
+@media @max768 {
+  .nanoporeGene {
+    .content {
+      width: 80vw;
+      margin: 5vh auto;
+      font-weight: 400;
+      color: #787878;
+      line-height: 2;
+      text-align: left;
+    }
+  }
+  .key {
+    padding-bottom: 6vh;
+    .content {
+      flex-wrap: wrap;
+      .advItem {
+        width: 37vw;
+        padding: 3vh 2vw;
+        .icon {
+          width: 12vw;
+          height: 12vw;
+          padding: 2vw;
+          background-size: 8vw auto;
+        }
+        .advCon {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .compare {
+    padding: 0 10vw;
+    .table {
+      .row {
+        p {
+          line-height: 1.5;
+        }
+        &:nth-child(even) {
+          background-image: linear-gradient(to right, #f6f6f680, #f6f6f620);
+        }
+        &:nth-child(odd):not(:first-child) {
+          background-image: linear-gradient(to right, rgba(246, 246, 246, 0.502), rgba(246, 246, 246, 0.125));
+        }
+        &:first-child {
+          margin-bottom: 0;
+          .title p {
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+}

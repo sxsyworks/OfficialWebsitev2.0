@@ -1,0 +1,139 @@
+@import '~@/assets/styles/index.less';
+.newsIndex {
+  width: 80vw;
+  height: 76vh;
+  background: #fff;
+  padding: 10vh 10vw;
+  .title {
+    font-size: 2.625rem;
+    font-weight: 400;
+    color: @black;
+    letter-spacing: 0.1rem;
+    line-height: 3.125rem;
+    .subTitle {
+      font-size: 1.25rem;
+      color: @black;
+      line-height: 1.5rem;
+      letter-spacing: 0.5rem;
+      .fw-light();
+    }
+  }
+  .content {
+    display: flex;
+    padding: 7vh 0;
+    height: 100%;
+    flex-wrap: wrap;
+    .type {
+      min-width: 100px;
+      flex: 1;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 2rem;
+      position: relative;
+      .typeItem {
+        font-size: 1.25rem;
+        letter-spacing: 0.1rem;
+        padding: 0.3vh;
+        color: @black;
+        cursor: pointer;
+        &::after {
+          font-size: 1.25rem;
+          content: '〉';
+          padding-left: 1.1458vw;
+        }
+      }
+      .active {
+        color: @blue;
+      }
+      .moreBtn {
+        position: absolute;
+        bottom: 6rem;
+        font-size: 1rem;
+        font-weight: 400;
+        color: @blue;
+        line-height: 1.5rem;
+        border: 2px solid @blue;
+        padding: 0.74vh 1.4583vw;
+        border-radius: 2rem;
+        cursor: pointer;
+        min-width: 80px;
+        text-align: center;
+        box-sizing: border-box;
+        &:hover {
+          border: 2px solid @blue;
+          background-color: @blue;
+          color: white;
+        }
+      }
+    }
+    .list {
+      // flex: 3;
+      .flex();
+      .flex-justify(space-between);
+      .flex-wrap();
+      .newsItem {
+        font-size: 1rem;
+        min-width: 100px;
+        width: 18.6458vw;
+        padding: 1rem 1.25rem 2rem;
+        cursor: pointer;
+        margin-bottom: 4rem;
+        position: relative;
+        color: @gray-78;
+        &:hover {
+          background-color: @blue-light;
+          img {
+            opacity: 1;
+          }
+        }
+        .img {
+          width: 100%;
+          background-size: cover;
+          opacity: 0.8;
+          transition: 100ms linear;
+        }
+
+        .info {
+          color: @gray-78;
+          margin: 1.25rem 0 1rem;
+          font-size: 1rem;
+          .flex();
+          .flex-align(center);
+          .day {
+            font-size: 2.5rem;
+            color: @black;
+          }
+          .date {
+            flex: 1;
+            margin-left: 0.5rem;
+            line-height: 1.2;
+            color: @black;
+            font-size: 1rem;
+          }
+          .origin {
+            text-align: right;
+            font-weight: 400;
+            line-height: 1.5rem;
+            font-size: 1rem;
+            .value {
+              color: @blue;
+            }
+          }
+        }
+        .btn {
+          position: absolute;
+          font-size: 1.25rem;
+          font-weight: 400;
+          color: @blue;
+          line-height: 1.5rem;
+          bottom: 2rem;
+          &::after {
+            font-size: 1rem;
+            content: '〉';
+            padding-left: 0.9896vw;
+          }
+        }
+      }
+    }
+  }
+}

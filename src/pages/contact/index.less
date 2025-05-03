@@ -1,0 +1,236 @@
+@import '~@/assets/styles/index.less';
+
+.form {
+  .flex();
+  .flex-justify(space-between);
+  padding: 10vh 14vw;
+  background-color: @gray-f6;
+
+  .title {
+    color: @blue;
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .icon(@i) when(@i <= 4) {
+    .icon@{i} {
+      background-image: url('~@/assets/imgs/contact/icon@{i}.png');
+    }
+    .icon((@i+1));
+  }
+  .icon(1);
+
+  .emails {
+    flex: 1;
+    margin-bottom: 8vh;
+    .email {
+      margin-bottom: 2rem;
+      color: @gray-78;
+      .icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 4.5rem;
+        height: 4rem;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .info {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 2rem;
+        .name {
+          font-size: 1.2rem;
+          .fw-bold();
+        }
+        .text {
+          font-size: 1.2rem;
+          font-weight: 300;
+          letter-spacing: 1px;
+          .fw-light();
+        }
+      }
+    }
+  }
+
+  .persons {
+    .text {
+      vertical-align: top;
+      th,
+      td {
+        padding: 0.5rem 0.8rem;
+        text-align: left;
+        letter-spacing: 1px;
+        font-size: 1.2rem;
+        color: #787878;
+        .fw-light();
+        .person {
+          margin-bottom: 3px;
+        }
+      }
+    }
+  }
+
+  .formWrapper {
+    flex-grow: 1.8;
+    flex-shrink: 0;
+    // flex: 1;
+    margin-left: 8vw;
+    color: @gray-78;
+  }
+}
+
+.mapWrap {
+  height: 100vh;
+  min-height: 450px;
+  .flex();
+  .flex-align(center);
+
+  .addrs {
+    box-sizing: border-box;
+    flex: 3.75;
+    color: @gray-78;
+    font-size: 1rem;
+    line-height: 2;
+
+    .addr {
+      margin-bottom: 3rem;
+      text-align: center;
+      cursor: pointer;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 4.5rem;
+        height: 4rem;
+        background-image: url('~@/assets/imgs/contact/icon6.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .info {
+        width: 15rem;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 2rem;
+        color: @gray-999;
+        text-align: left;
+        font-size: 0.85rem;
+      }
+    }
+
+    .active {
+      .icon {
+        background-image: url('~@/assets/imgs/contact/icon5.png');
+      }
+      .info {
+        color: @blue;
+      }
+    }
+  }
+
+  .map {
+    flex: 6.25;
+    height: 100%;
+    border-top: 1px solid #fff;
+    pointer-events: none; /* 禁止手指缩放 */
+    .mapIcon {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+}
+
+.page-en {
+  &.mapWrap {
+    height: 100vh;
+  }
+  .addrs .addr .info {
+    width: 25rem;
+  }
+  .persons {
+    .text {
+      display: flex;
+      flex-wrap: wrap;
+      td {
+        display: block;
+        width: 100%;
+        padding: 0.2rem 0.8rem;
+        .person .name {
+          display: inline-block;
+          width: 8rem;
+        }
+      }
+      td:last-child {
+        font-size: 1rem;
+        letter-spacing: 0;
+      }
+    }
+  }
+}
+
+@media @max768 {
+  .page-en.mapWrap {
+    height: auto;
+  }
+  .form {
+    display: block;
+    padding: 10vh 6vw;
+    .emails {
+      .email {
+        margin-bottom: 3.5rem;
+      }
+    }
+    .title {
+      color: @blue;
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .formWrapper {
+      flex: 1;
+      margin: 10vh 0;
+      color: @gray-78;
+    }
+  }
+  .mapWrap {
+    flex-wrap: wrap-reverse;
+    height: auto;
+    .addrs {
+      width: 100vw;
+      flex: none;
+      padding: 4vh 10vw;
+      .addr {
+        width: 100%;
+      }
+
+      .active {
+        .icon {
+          background-image: url('~@/assets/imgs/contact/icon5.png');
+        }
+        .info {
+          color: @blue;
+        }
+      }
+    }
+
+    .map {
+      width: 100vw;
+      flex: none;
+      height: 40vh;
+      border-top: 1px solid #fff;
+    }
+  }
+
+  .page-en {
+    .addrs {
+      padding: 4vh 4vw;
+      .addr {
+        .icon {
+          margin-bottom: 2rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@white: #fff;
+@black: #505050;
+@black-3C: #3c3c3c;
+@gray-f6: #f6f6f6;
+@gray-78: #787878;
+@gray-e1: #e1e1e1;
+@gray-999: #999;
+@blue-deep: #3078ff;
+@blue: #51a8de;
+@blue-lighter: #84ebff;
+@blue-light50: rgba(133, 235, 255, 0.4);
+@blue-light: #e6fbff;
+@bgBlue: #ecf8ff;
+@blue-dark: #283b6c;
+@blue-gray: #3b608d;
+@bgBlue: #ecf8ff;
+@max768: ~'(max-width: 768px)';
+@min768: ~'(min-width: 768px)';
+@max961: ~'(max-width: 961px)';
+@max1921: ~'(max-width: 1921px)';
+@max2881: ~'(max-width: 2881px)';
+@max3851: ~'(max-width: 3851px)';
+@min3851: ~'(min-width: 3851px)';
+@url: 'https://webjpg.qitantech.com';
+
+// 写成自定义函数
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  .flex();
+  flex-direction: column;
+}
+
+.flex-align(@pos) {
+  align-items: @pos;
+}
+
+.flex-justify(@pos) {
+  justify-content: @pos;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-normol {
+  .flex();
+  .flex-justify(center);
+  .flex-align(center);
+}
+
+.fw-light {
+  font-weight: 300;
+}
+.fw-bold {
+  font-weight: 500;
+}
+.fw-bolder {
+  font-weight: 700;
+}

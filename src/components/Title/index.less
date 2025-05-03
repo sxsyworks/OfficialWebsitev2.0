@@ -1,0 +1,45 @@
+@import '~@/assets/styles/index.less';
+
+.title {
+  text-align: center;
+  font-size: 2.625rem;
+  font-weight: 400;
+  color: @black;
+  line-height: 2.6rem;
+  letter-spacing: 0.1rem;
+  padding-top: 6rem;
+  margin-bottom: 3rem;
+  .subTitle {
+    font-size: 1.25rem;
+    color: inherit;
+    letter-spacing: 3px;
+    margin-top: 2px;
+    .fw-light();
+  }
+}
+
+.title-en {
+  .title();
+  font-size: 2rem;
+  margin: 0 auto 3rem;
+  letter-spacing: 0.05rem;
+  .subTitle {
+    display: none;
+  }
+}
+
+@media @max768 {
+  .title {
+    font-size: 2em;
+    line-height: 1.2;
+    .subTitle {
+      font-size: 0.45em;
+      line-height: 1.5;
+      margin-top: 0.5rem;
+    }
+  }
+  .title-en {
+    .title();
+    width: 90%;
+  }
+}

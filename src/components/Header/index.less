@@ -1,0 +1,67 @@
+@import '~@/assets/styles/index.less';
+
+.header {
+  width: 100vw;
+  height: 60vh;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  position: relative;
+  .bgTitle {
+    position: absolute;
+    bottom: 7vh;
+    left: 9vw;
+    color: #fff;
+    .title {
+      font-size: 2rem;
+    }
+    .subTitle {
+      width: 19vw;
+      font-size: 1.25rem;
+      letter-spacing: 0.2rem;
+      line-height: 2;
+      word-break: break-word;
+      .fw-light();
+    }
+    .border {
+      width: 10vw;
+      border-bottom: 2px solid #51a8de;
+      margin: 3vh 0;
+    }
+    .bread {
+      display: none;
+      .breadItem {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      .breadItem:not(:last-child) {
+        &::after {
+          content: '〉';
+          padding: 0 1vw;
+        }
+      }
+    }
+  }
+  .bgTitle-en {
+    .bgTitle();
+    .subTitle {
+      display: none;
+    }
+  }
+}
+.mobileHeader {
+  .bgTitle {
+    .subTitle {
+      width: auto;
+    }
+    .border {
+      width: 15vw;
+    }
+  }
+  .bgTitle-en {
+    .bgTitle();
+    .subTitle {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+.ranking {
+  width: 96vw;
+  height: calc(100% - 40vh);
+  padding: 20vh 2vw;
+  background-image: url(../../../../assets/imgs/rankbg.png);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  position: relative;
+  .dataItem {
+    margin: 0 auto;
+    width: 10.75rem;
+    font-size: 1rem;
+    color: #787878;
+    opacity: 0;
+    font-weight: 400;
+    .nums {
+      text-align: center;
+      font-size: 3.5rem;
+      color: #51a8de;
+      line-height: 1.5;
+    }
+  }
+  .btn {
+    position: absolute;
+    bottom: 15%;
+    text-align: center;
+    left: calc(48vw - 4.5rem);
+    display: inline-block;
+    font-size: 1.2rem;
+    border: 2px solid #51a8de;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    color: #51a8de;
+  }
+  .btn:hover {
+    border: 2px solid #51a8de;
+    background-color: #51a8de;
+    color: white;
+  }
+}
+.animate {
+  .dataItem {
+    animation: 'opacityZeroTo1' 1.5s linear forwards;
+    -webkit-animation: 'opacityZeroTo1' 1.5s linear forwards;
+  }
+}

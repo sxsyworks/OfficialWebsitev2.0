@@ -1,0 +1,278 @@
+@max768: ~'(max-width: 768px)';
+@max961: ~'(max-width: 961px)';
+@max1921: ~'(max-width: 1921px)';
+@max2881: ~'(max-width: 2881px)';
+@max3851: ~'(max-width: 3851px)';
+@min3851: ~'(min-width: 3851px)';
+
+// 不同分辨率适配
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  font-size: 3rem;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-weight: 700;
+}
+
+h5 {
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: inherit;
+  letter-spacing: 2px;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#root {
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.btn {
+  display: inline-block;
+  font-size: 1.125rem;
+  border: 2px solid #51a8de;
+  padding: 0.625rem 2.625rem;
+  border-radius: 2rem;
+  color: #51a8de;
+  background: transparent;
+}
+
+.btn:hover {
+  border: 2px solid #51a8de;
+  background-color: #51a8de;
+  color: white;
+  outline: none;
+}
+
+// animate
+@keyframes menuShowing {
+  100% {
+    top: 0;
+  }
+  50% {
+    top: -5vh;
+  }
+  0% {
+    top: -20vh;
+  }
+}
+
+@-webkit-keyframes menuShowing {
+  100% {
+    top: 0;
+  }
+  50% {
+    top: -5vh;
+  }
+  0% {
+    top: -20vh;
+  }
+}
+
+@keyframes opacityZeroTo1 {
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  0% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes opacityZeroTo1 {
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInLeftSmall {
+  from {
+    opacity: 0;
+    transform: translate3d(-1.5rem, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate__fadeInLeftSmall {
+  animation-name: fadeInLeftSmall;
+  animation-duration: 1s;
+}
+
+@keyframes fadeInUpSmall {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate__fadeInUpSmall {
+  animation-name: fadeInUpSmall;
+  animation-duration: 1s;
+}
+
+.ani-fill-mode {
+  animation-fill-mode: both;
+}
+
+each(range(6), {
+  .anidelay-@{value} {
+    animation-delay: (@value * 0.5s);
+    &:extend(.ani-fill-mode);
+  }
+});
+
+each(range(5), {
+  @name: if((@value=1), ani, ~'ani-@{value}');
+  .@{name} {
+    animation-duration: (@value * 1s);
+  }
+});
+
+.text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media @max768 {
+  .btn {
+    border: 1px solid #51a8de;
+  }
+
+  .border,
+  .header,
+  .titleBox {
+    border-bottom: 1px solid #51a8de;
+  }
+}
+.message {
+  position: absolute;
+  top: 1vh;
+  left: 45%;
+  .error {
+    background: #fff;
+    padding: 4px 1vw;
+    border: 1px solid #ccc;
+    margin-bottom: 2px;
+    &::before {
+      display: inline-block;
+      content: 'x';
+      font-size: 1rem;
+      color: #ff4d4f;
+      font-weight: 700;
+      margin-right: 5px;
+      text-align: center;
+    }
+  }
+  .success {
+    background: #fff;
+    padding: 4px 1vw;
+    border: 1px solid #ccc;
+    margin-bottom: 2px;
+    // &::before {
+    //   display: inline-block;
+    //   content: '√';
+    //   font-size: 1rem;
+    //   font-weight: 700;
+    //   color: #52c41a;
+    //   margin-right: 5px;
+    //   text-align: center;
+    // }
+  }
+  .warning {
+    background: #fff;
+    padding: 4px 1vw;
+    border: 1px solid #ccc;
+    margin-bottom: 2px;
+    &::before {
+      display: inline-block;
+      content: '!';
+      font-size: 1rem;
+      color: #faad14;
+      font-weight: 700;
+      margin-right: 5px;
+      text-align: center;
+    }
+  }
+}
+.swiper-pagination-bullets {
+  .swiper-pagination-bullet {
+    padding: 1rem;
+    border: 1px solid transparent;
+    background: transparent;
+    position: relative;
+    margin: 0 1vw;
+    opacity: 1;
+    &::before {
+      display: inline-block;
+      position: absolute;
+      left: calc(50% - 0.25rem);
+      top: calc(50% - 0.25rem);
+      content: '';
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      background-color: #fff;
+    }
+  }
+  .swiper-pagination-bullet-active {
+    border-color: rgb(81, 168, 222);
+  }
+}

@@ -1,0 +1,141 @@
+import Phone from '@/assets/icons/phone.png';
+import ContactIcons from '@/components/ContactIcons';
+import { MenuData } from '@/utils/constant';
+import { useEffect, useMemo, useState } from 'react';
+import { FormattedMessage, Link, useIntl, useLocation, useModel } from 'umi';
+import './index.less';
+const Footer = () => {
+  const { initialState } = useModel('@@initialState');
+  const { isPhone } = initialState;
+  const location = useLocation();
+  const { formatMessage, locale } = useIntl();
+  const [data, setData] = useState([]);
+  const business = {
+    business: 'business@qitantech.com',
+    investment: 'ir@qitantech.com',
+    media: 'pr@qitantech.com',
+    career: 'hiring@qitantech.com',
+  };
+
+  // 重组菜单数据&路由跳转 TODO
+  useEffect(() => {
+    if (!locale) return;
+    const lang = locale === 'zh-CN' ? 'en-US' : 'zh-CN';
+    // let { pathname } = location;
+    let arr = [];
+    MenuData.map((item) => {
+      let { children = [], langs = [], path: topPath } = item;
+      let newItem = item;
+      let isShowItem = !langs.length || langs.includes(locale);
+      if (topPath && typeof topPath === 'object') {
+        let newTopPath = topPath[locale];
+        newItem = { ...newItem, path: newTopPath };
+      }
+      if (children) {
+        const childrenArr = children?.reduce((acc, cur) => {
+          let { path } = cur;
+          let newPath = path;
+          let otherPath;
+          if (!isShowItem) {
+            newPath = undefined;
+            otherPath = path;
+          } else if (typeof path === 'object') {
+            newPath = path[locale];
+            otherPath = path[lang];
+          }
+          // 需要更新跳转到对应的页面
+          // if (!topPath && pathname === otherPath) {
+          //   let url = newPath || '/404';
+          //   history.push(url);
+          // }
+          newPath && acc.push({ ...cur, path: newPath });
+          return acc;
+        }, []);
+        newItem = { ...newItem, children: childrenArr };
+      }
+      isShowItem && arr.push(newItem);
+    });
+    setData(arr);
+  }, [locale, MenuData]);
+
+  const businessDom = useMemo(() => {
+    let dom = [];
+    Object.getOwnPropertyNames(business).forEach((key) => {
+      dom.push(
+        <div className="cooItem" key={key}>
+          <div className="title">
+            <FormattedMessage id={'contact.' + key} />
+          </div>
+          <div className="linkText">{business[key]}</div>
+        </div>,
+      );
+    });
+    return dom;
+  }, []);
+
+  const links = useMemo(() => {
+    return data.map((item, index) => {
+      if (!item.hideInFooter) {
+        return (
+          <div key={item.name} className="title busItem">
+            {item.path ? (
+              <Link to={item.path}>
+                <FormattedMessage id={'menu.' + item.name} />
+              </Link>
+            ) : (
+              <div>
+                <FormattedMessage id={'menu.' + item.name} />
+              </div>
+            )}
+            <ul key={item.name + index} className="link">
+              {item.children &&
+                item.children.map((child) => {
+                  return (
+                    <li key={index + '_' + child.name} className="linkText">
+                      <a href={child.path} target={child.target || '_parent'} rel="noopener noreferrer">
+                        <FormattedMessage id={'menu.' + child.name} />
+                      </a>
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
+        );
+      }
+    });
+  }, [data]);
+  return (
+    <div className={`${formatMessage({ id: 'page.css.footer' })} ${isPhone ? 'mobileFooter' : ''}`} id="footer">
+      <div className="topBox">
+        <div className="leftBox">
+          <Link to="/">
+            {/* <div className="logo">
+              <Logo />
+            </div> */}
+            <img src={require('@/assets/imgs/seo-logo.jpg')} alt="齐碳科技logo" className="seoLogo" title="齐碳科技" />
+          </Link>
+          <div className="cooperation">{businessDom}</div>
+        </div>
+        <div className="footerMenu" id="footerMenu">
+          {links}
+        </div>
+      </div>
+      <div className="bottomBox">
+        <div className="linkText">
+          备案/许可证号： 蜀ICP备17004819号-1
+          <div>Copyright ©2016-2022 Qitan Tech. All Rights Reserved.</div>
+        </div>
+        <div className="centerBox">
+          <img src={Phone} alt="telephone" />
+          +86-400-800-2038
+        </div>
+        <div className="contact">
+          <div className="contactIcon">
+            <ContactIcons />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Footer;

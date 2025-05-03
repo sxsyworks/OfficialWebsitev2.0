@@ -1,0 +1,68 @@
+.caseBox {
+  height: 0px;
+  overflow-y: hidden;
+  background-color: #f6f6f6;
+  .index {
+    font-size: 10rem;
+    color: #fff;
+    margin-top: 10vh;
+    padding: 0 10vw 0 15vw;
+    position: relative;
+    .name {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 55vw;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 2rem;
+      font-weight: 400;
+      color: #51a8de;
+    }
+  }
+  .cases {
+    padding: 5vh 14vw 14vh 23vw;
+    position: relative;
+    border-bottom: 2px solid #fff;
+    color: #787878;
+    .caseItem {
+      display: flex;
+      justify-content: space-between;
+      padding: 5.4vh 0;
+      .caseLeft {
+        display: flex;
+        svg {
+          width: 4vw;
+        }
+        .caseTitle {
+          display: inline-block;
+          font-size: 1.5rem;
+          font-weight: 400;
+          color: #51a8de;
+          line-height: 1.5;
+          padding-left: 2.4vw;
+        }
+      }
+      .caseRight {
+        width: 42vw;
+        font-size: 1rem;
+        line-height: 2;
+        :global {
+          .img {
+            display: block;
+            width: 100%;
+            padding: 3.5vh 0;
+          }
+          .imga {
+            display: block;
+            width: 100%;
+            padding: 3.5vh 0;
+          }
+        }
+      }
+    }
+    .index {
+      position: absolute;
+    }
+  }
+}

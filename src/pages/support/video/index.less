@@ -1,0 +1,129 @@
+@import '~@/assets/styles/index.less';
+
+.videoBox {
+  padding: 10vh 15vw;
+  .steps {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #3c3c3c;
+    line-height: 1.5;
+    .step {
+      width: 22vw;
+      text-align: center;
+      cursor: pointer;
+      .subtitle {
+        font-size: 1.25rem;
+        font-weight: 300;
+        line-height: 1.5;
+        letter-spacing: 3px;
+        padding-bottom: 2.5vh;
+        .fw-light();
+      }
+    }
+    .current {
+      border-bottom: 2px solid #51a8de;
+    }
+  }
+  .videos {
+    padding: 10vh 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -2vw;
+    .videoItem {
+      width: 20vw;
+      height: auto;
+      padding: 5vh 0;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #787878;
+      line-height: 1.5;
+      margin: 0 2vw;
+      .link {
+        width: 100%;
+        display: block;
+        margin-bottom: 0.5vh;
+        img {
+          width: 100%;
+        }
+      }
+      .imgwrap {
+        position: relative;
+        height: 12vw;
+        margin-bottom: 1vh;
+        .video {
+          width: 100%;
+          height: 100%;
+          display: block;
+          margin-bottom: 3vh;
+          border: 2px solid @white;
+          object-fit: fill;
+        }
+        .img {
+          position: absolute;
+          top: 0;
+          width: 101%;
+          height: 101%;
+        }
+      }
+    }
+  }
+}
+@media @max768 {
+  .videoBox {
+    padding: 10vh 6vw;
+    .steps {
+      .step {
+        font-size: 1.5rem;
+        .subtitle {
+          font-size: 1rem;
+          padding-bottom: 1vh;
+        }
+      }
+    }
+    .videos {
+      padding: 6vh 0;
+      display: block;
+      .videoItem {
+        width: 100%;
+        height: auto;
+        display: flex;
+        padding: 4vh 0;
+        font-weight: 400;
+        color: #787878;
+        line-height: 1.5;
+        margin: 0 1.5%;
+        .link {
+          width: 100%;
+          display: block;
+          margin-bottom: 3vh;
+          img {
+            width: 45vw;
+            padding-right: 2vw;
+          }
+        }
+        .imgwrap {
+          position: relative;
+          padding-right: 2vw;
+          height: 30vw;
+          .video {
+            width: 45vw;
+            height: 100%;
+            display: block;
+            margin-bottom: 3vh;
+            border: 2px solid @white;
+            object-fit: fill;
+          }
+          .img {
+            position: absolute;
+            top: 0;
+            width: 45vw;
+            height: 100%;
+            z-index: 10;
+          }
+        }
+      }
+    }
+  }
+}

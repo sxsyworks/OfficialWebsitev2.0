@@ -1,0 +1,300 @@
+@import '~@/assets/styles/index.less';
+
+.bidding {
+  overflow-y: auto;
+}
+
+.container {
+  margin: 0 12vw;
+}
+
+.header {
+  background-color: #51a8de;
+  box-sizing: border-box;
+  padding: 1vh 4vw;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+
+  .logo {
+    font-size: 1vw;
+    margin-left: 5vw;
+  }
+}
+
+.devices {
+  display: flex;
+  // .container();
+  margin-top: 3rem;
+  .device {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 7rem;
+    padding-top: 3.25rem;
+    color: @gray-78;
+    .title {
+      font-size: 2.75rem;
+      .fw-bold();
+      line-height: 1;
+      letter-spacing: 2px;
+      word-break: break-word;
+    }
+    .subtitle {
+      font-size: 1.75rem;
+      line-height: 2;
+    }
+    .adv {
+      color: @gray-e1;
+      font-size: 1.25rem;
+      line-height: 2;
+      font-weight: 400;
+    }
+    .img {
+      width: 30%;
+      margin: 5vh auto;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .current {
+    background-image: linear-gradient(#fff, #e6fbff82, #84ebff33, #e6fbff82, #fff);
+    color: @black;
+    .adv {
+      color: @gray-78;
+    }
+    .img {
+      color: #84ebff;
+    }
+  }
+}
+
+.feature {
+  .container();
+  margin-top: 10vh;
+  .feaCon {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3.8rem;
+    .feaItem {
+      text-align: center;
+      .feaIcon {
+        width: 6.25vw;
+        height: 6.25vw;
+        // width: 7.5rem; // TODO
+        // width: 7.5rem;
+        background-color: @blue-light;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 2.5vw auto;
+      }
+      .feaTitle {
+        font-size: 1.5rem;
+        color: @blue;
+        margin-top: 1.2rem;
+      }
+    }
+    .feaItem:nth-child(5) {
+      .feaIcon {
+        background-position: center center;
+        background-size: auto 1.6vw;
+      }
+    }
+  }
+}
+
+.compare {
+  .container();
+  margin-top: 15vh;
+  text-align: center;
+  font-size: 1rem;
+  color: @black;
+
+  .contents {
+    margin: 5vh 0 20vh;
+    .compareTitle {
+      .compareItems();
+    }
+    .title {
+      font-size: 2rem;
+      font-weight: 500;
+      color: @blue;
+      line-height: 2.375;
+      padding: 2.5rem 0 1.25rem;
+      .fw-bold();
+    }
+    .compareItems {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      display: -ms-grid;
+      -ms-grid-columns: 1fr 2fr;
+      .name {
+        font-size: 1.25rem;
+        color: @blue;
+        line-height: 1.5;
+        text-align: left;
+        padding: 1.8rem 0;
+        padding-left: 8rem;
+      }
+      .text {
+        color: @gray-78;
+        padding: 1.8rem 0;
+        word-break: break-word;
+        font-size: 1rem;
+        line-height: 3.2;
+        text-align: left;
+        padding: 1rem;
+        .tip {
+          font-size: 0.9rem;
+        }
+      }
+      div:not(:last-child) {
+        border-right: 2px solid #ffffff;
+      }
+      div:nth-child(1) {
+        -ms-grid-column: 1;
+      }
+      div:nth-child(2) {
+        -ms-grid-column: 2;
+      }
+      div:nth-child(3) {
+        -ms-grid-column: 3;
+      }
+    }
+    .compareItems:nth-child(odd) {
+      background-color: @blue-light;
+    }
+    .note {
+      margin-top: 1rem;
+      font-size: 14px;
+      text-align: left;
+      color: #999;
+    }
+  }
+}
+
+@media @max768 {
+  .container {
+    margin: 0 4vw;
+  }
+  .devices {
+    .container();
+    padding: 2vh 2vw;
+    .device {
+      .title {
+        font-size: 1.25rem;
+      }
+      .subtitle {
+        font-size: 1rem;
+      }
+      .adv {
+        text-align: left;
+        font-size: 1rem;
+        padding: 0 2rem;
+      }
+    }
+  }
+  .feature {
+    .container();
+    margin-top: 0;
+    .feaCon {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      .feaItem {
+        text-align: center;
+        padding: 1vh 0;
+        .feaIcon {
+          width: 15vw;
+          height: 15vw;
+          background-size: 6vw auto;
+          margin: 0 auto;
+        }
+        .feaTitle {
+          color: @blue;
+          padding-top: 1.2rem;
+          font-size: 1rem;
+        }
+      }
+      .feaItem:nth-child(5) {
+        .feaIcon {
+          background-size: auto 6vw;
+        }
+      }
+    }
+  }
+  .compare {
+    .container();
+    padding-top: 4vh;
+    .contents {
+      .compareTitle {
+        .compareItems();
+      }
+      .title {
+        line-height: 1.5;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+      .compareItems {
+        display: grid;
+        grid-template-columns: 30% 35% 35%;
+        .name {
+          font-size: 1rem;
+          line-height: 1.5;
+          text-align: left;
+          padding: 2vh 1vw 2vh 5vw;
+          max-width: 8rem;
+        }
+        .text {
+          padding: 1.5vh 1vw;
+          .tip {
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      .compareItems:nth-child(odd) {
+        background-color: @blue-light;
+      }
+    }
+  }
+  .document {
+    width: 100%;
+    height: 20vh;
+    margin-top: 15.5rem;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: contain;
+    background-position-x: 0;
+    background-color: @blue-light;
+    background-image: url('~@/assets/imgs/sequencer/bg2.png');
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    margin-top: 15vh;
+    // background-size: 100% 100%;
+    .content {
+      width: 100%;
+      .title {
+        padding-top: 10vh;
+        text-align: center;
+        padding-left: 0;
+      }
+      .devicesDoc {
+        display: flex;
+        margin-top: 1.2vh;
+        flex-wrap: wrap;
+        .doc {
+          padding: 0;
+          min-width: 150px;
+          text-align: center;
+          flex: 1;
+          .btn {
+            border: 1px solid @blue;
+          }
+        }
+      }
+    }
+  }
+}

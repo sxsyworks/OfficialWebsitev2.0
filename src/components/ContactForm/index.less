@@ -1,0 +1,281 @@
+@import '~@/assets/styles/index.less';
+// 普通表单——联系我们页面
+.form {
+  .title {
+    color: @blue;
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .section {
+    margin-bottom: 3rem;
+    width: 100%;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  .items {
+    display: grid;
+    display: -ms-grid;
+    grid-template-columns: repeat(2, 1fr);
+    -ms-grid-columns: 50% 50%;
+    grid-auto-flow: row dense;
+    // grid-column-gap: 10%;
+    // grid-row-gap: 2.5rem;
+
+    .singleItem {
+      margin-bottom: 3rem;
+      &:nth-child(2n-1) {
+        margin-right: 2vw;
+      }
+      &:nth-child(2n) {
+        margin-left: 2vw;
+      }
+
+      .hiddenMsg {
+        visibility: hidden;
+      }
+
+      .valiMsg {
+        color: #51a8de;
+        gap: 15% 85%;
+        font-size: 0.8rem;
+
+        &::before {
+          padding-right: 0.5rem;
+          display: inline-block;
+          content: '';
+          background-image: url('../../assets/icons/small-warning.png');
+          background-size: 0.8rem;
+          background-repeat: no-repeat;
+          width: 0.7rem;
+          height: 1rem;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .newsItem {
+      margin-bottom: 0;
+    }
+
+    .item {
+      padding: 0.5rem 1rem 0.1rem 0;
+      font-size: 1rem;
+      border-bottom: 1px solid @white;
+      background-color: @white;
+      -ms-grid-column: 1;
+      -ms-grid-row: 1;
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      .flex-normol();
+      span {
+        flex-basis: 3.5rem;
+        white-space: nowrap;
+      }
+      input {
+        width: 100% - 3.5rem;
+        flex: 1;
+        border: none;
+        background: transparent;
+        outline: none;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    .item:nth-child(2) {
+      -ms-grid-column: 2;
+      -ms-grid-row: 1;
+    }
+    .item:nth-child(3) {
+      -ms-grid-column: 1;
+      -ms-grid-row: 2;
+    }
+    .item:nth-child(4) {
+      -ms-grid-column: 2;
+      -ms-grid-row: 2;
+    }
+    .item:nth-child(5) {
+      -ms-grid-column: 1;
+      -ms-grid-row: 3;
+    }
+    .item:nth-child(6) {
+      -ms-grid-column: 2;
+      -ms-grid-row: 3;
+    }
+    .itemSpecial {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      -ms-grid-column-span: 2;
+      -ms-grid-column: 1;
+      -ms-grid-row: 4;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 0;
+      textarea {
+        width: 100%;
+        border: none;
+        resize: none;
+        overflow-y: auto;
+        font-family: Arial, Helvetica, sans-serif;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .btnWrapper {
+    .flex();
+    .flex-justify(flex-end);
+    margin-top: 3rem;
+
+    .btnAreaMsg {
+      text-align: center;
+      padding: 0.5rem;
+      box-sizing: border-box;
+      width: 100%;
+      letter-spacing: 0.06rem;
+      color: #51a8de;
+      font-size: 1rem;
+
+      img {
+        padding-right: 0.5rem;
+        width: 1.2rem;
+        position: relative;
+        top: 0.15rem;
+      }
+    }
+  }
+}
+// 线形表单——首页
+.formLine {
+  .form();
+  display: flex;
+  height: 80%;
+  align-items: center;
+
+  .title {
+    color: @white;
+    margin-bottom: 4rem;
+  }
+
+  .items {
+    color: @white;
+    .item {
+      padding: 0;
+      background-color: transparent;
+      // margin-bottom: 4rem;
+      input {
+        color: @white;
+      }
+    }
+    .itemSpecial {
+      textarea {
+        background-color: transparent;
+        color: @white;
+      }
+    }
+  }
+}
+
+@media @max768 {
+  .form {
+    .section {
+      margin-bottom: 10vh;
+    }
+    .items {
+      display: block;
+      .singleItem {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        margin-bottom: 1.5rem;
+
+        .textMsg {
+          display: block;
+          margin: 1vh auto !important;
+          width: 65vw;
+          height: 1rem;
+        }
+
+        .hiddenMsg,
+        .valiMsg {
+          .textMsg();
+        }
+
+        .item {
+          width: 65vw;
+          margin: 1vh auto !important;
+          display: flex;
+          span {
+            display: block;
+            flex: 1;
+          }
+          input {
+            flex: 4;
+            border: none;
+            background: transparent;
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+        .itemSpecial {
+          width: 65vw;
+          height: auto;
+          display: block;
+          margin: 1vh auto !important;
+        }
+      }
+    }
+
+    .btnWrapper {
+      display: block;
+      margin-top: 2rem;
+
+      .btnAreaMsg {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  .btn {
+    display: block;
+    width: 9rem;
+    height: 3.5rem;
+    margin: 0 auto;
+    padding: 0.5rem 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #51a8de;
+    border: 2px solid #51a8de;
+    border-radius: 2rem;
+    box-sizing: border-box;
+    &:hover {
+      width: 9rem;
+      height: 3.5rem;
+      border: 2px solid #51a8de;
+      background-color: #51a8de;
+      color: white;
+    }
+  }
+}
+
+.btn {
+  display: block;
+  font-size: 1.125rem;
+  border: 2px solid #51a8de;
+  padding: 0.625rem 2.625rem;
+  border-radius: 2rem;
+  color: #51a8de;
+  background: transparent;
+  &:hover {
+    border: 2px solid #51a8de;
+    background: #51a8de;
+    color: white;
+    outline: none;
+  }
+}

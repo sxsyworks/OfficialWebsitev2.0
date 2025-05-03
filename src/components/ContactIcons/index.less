@@ -1,0 +1,55 @@
+@import '~@/assets/styles/index.less';
+
+.contactIcon {
+  display: flex;
+  justify-content: space-between;
+
+  .icon {
+    margin: 1rem;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      .qrCode {
+        opacity: 1;
+        bottom: 8.5em;
+      }
+    }
+    svg {
+      overflow-y: hidden;
+    }
+
+    .qrCode {
+      transition: opactiy, bottom 0.5s;
+      -webkit-transition: opactiy, bottom 0.5s;
+      opacity: 0;
+      width: 12em;
+      height: 12em;
+      position: absolute;
+      bottom: 4em;
+      left: -3em;
+
+      img {
+        width: 100%;
+      }
+
+      &:hover {
+        display: none;
+      }
+
+      // TODO
+      // &:hover .qrCode[opacity='0'] {
+      //   display: none;
+      // }
+    }
+  }
+}
+
+svg:hover .a {
+  fill: @blue;
+  stroke-width: 0;
+}
+
+svg:hover .b {
+  fill: @white;
+}

@@ -1,0 +1,78 @@
+.banner {
+  position: relative;
+  // height: 100vh;
+  overflow: hidden;
+  .imgItem {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+  }
+  :global {
+    .swiper-container {
+      background: black;
+    }
+  }
+}
+
+.wrapper {
+  // background-color: black; // TODO
+  position: relative;
+  height: 100%;
+  // background-image: url('https://webjpg.qitantech.com/banner/banner4-mobile.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  video,
+  .videoPlayer {
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: multiply;
+    display: none;
+  }
+  .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 20;
+    width: 60px;
+    height: 60px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    transition: all 0.3s;
+    &::before {
+      content: '';
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 12px solid #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  }
+}
+
+.wrapper.active {
+  background-image: none;
+  video,
+  .videoPlayer {
+    display: block;
+  }
+  .btn {
+    top: auto;
+    bottom: 20vh;
+    transform: translate3d(-50%, 0, 0);
+  }
+  .btn.active {
+    &::before {
+      border: none;
+      width: 15px;
+      height: 15px;
+      background: #fff;
+    }
+  }
+}

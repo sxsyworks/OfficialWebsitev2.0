@@ -1,0 +1,154 @@
+@import '~@/assets/styles/index.less';
+
+.deviceWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  background-color: @gray-f6;
+}
+
+.device {
+  width: 80vw;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  user-select: none;
+  .deviceItems {
+    padding-top: 6rem;
+    height: 100%;
+    display: flex;
+    transition: all 0.8s ease-in;
+  }
+}
+
+.deviceItem {
+  flex-shrink: 0;
+  width: 100%;
+  color: @black;
+  .title {
+    opacity: 0;
+    text-align: center;
+    padding: 0 0 4vh;
+    .fw-bold();
+    h3 {
+      font-size: 2rem;
+      line-height: 3rem;
+      margin-bottom: 1vh;
+    }
+
+    h4 {
+      font-size: 1rem;
+      margin-top: -0.5rem;
+    }
+
+    .arrows {
+      display: none;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .info {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    .item {
+      .fw-light();
+      flex: 1;
+      text-align: center;
+      border-right: 1px solid @blue;
+      font-size: 0.84rem;
+      letter-spacing: 2px;
+      .value {
+        .fw-bold();
+        font-size: 1.34rem;
+        font-weight: 500;
+        letter-spacing: 0px;
+      }
+      &:last-child {
+        border-right: none;
+      }
+      // &:first-child {
+      //   .value {
+      //     position: relative;
+      //   }
+      //   .value::after {
+      //     content: '*';
+      //     position: absolute;
+      //     font-size: 1.3rem;
+      //   }
+      // }
+    }
+  }
+
+  .img {
+    display: flex;
+    margin: 2rem auto;
+    width: 25vw;
+  }
+
+  .model {
+    position: relative;
+    width: 55vw;
+    height: 55vw;
+    margin: 8vh auto;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.arrow(@isLeft: true) {
+  display: block;
+  width: 2rem;
+  height: 2.6667rem;
+  background-size: contain;
+  background-image: url('~@/assets/icons/arrow-up.gif');
+  transform: rotate(if(@isLeft, -90deg, 90deg));
+  position: absolute;
+  top: calc(50vh - 1.3rem);
+  cursor: pointer;
+}
+.arrowLeft {
+  left: 1.8rem;
+  .arrow();
+}
+.arrowRight {
+  right: 1.8rem;
+  .arrow(false);
+}
+
+.btn {
+  width: auto;
+  font-size: 1.1667rem;
+  color: @blue;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid @blue;
+  border-radius: 2rem;
+  position: absolute;
+  bottom: 8vh;
+  left: calc(50% - 4rem);
+}
+.btn:hover {
+  border: 2px solid @blue;
+  background-color: @blue;
+  color: white;
+}
+
+.animate {
+  .title {
+    opacity: 1;
+    transition: all 1s ease-in;
+  }
+  .info {
+    opacity: 1;
+    transition: all 2s ease-in 1s;
+  }
+  .model > img {
+    opacity: 1;
+    transition: all 2s ease-in 2s;
+  }
+}

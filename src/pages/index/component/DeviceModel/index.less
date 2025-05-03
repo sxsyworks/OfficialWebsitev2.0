@@ -1,0 +1,156 @@
+@import '~@/assets/styles/index.less';
+
+.deviceWrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: @gray-f6;
+  position: relative;
+}
+
+.device {
+  width: 55%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  user-select: none;
+}
+
+.deviceItems {
+  height: 100vh;
+  display: flex;
+  transition: all 0.8s ease-in;
+}
+
+.deviceItem {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  background-color: @gray-f6;
+  color: @black;
+  .title {
+    opacity: 0;
+    text-align: center;
+    padding: 6vh 0;
+    h3 {
+      font-size: 2.8rem;
+      line-height: 4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      margin-top: -0.5rem;
+    }
+
+    .arrows {
+      display: none;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+  }
+
+  .info {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    .item {
+      text-align: center;
+      width: 12vw;
+      border-right: 1px solid @blue;
+      .value {
+        font-size: 1.8rem;
+        letter-spacing: 0.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: -2px;
+      }
+      &:last-child {
+        border-right: none;
+      }
+      // &:first-child {
+      //   .value {
+      //     position: relative;
+      //   }
+      //   .value::after {
+      //     content: '*';
+      //     position: absolute;
+      //     font-size: 1.3rem;
+      //   }
+      // }
+    }
+  }
+
+  .img {
+    display: flex;
+    margin: 2rem auto;
+    width: 25vw;
+  }
+}
+
+.arrow(@isLeft: true) {
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-image: url('~@/assets/icons/arrow-up.gif');
+  transform: rotate(if(@isLeft, -90deg, 90deg));
+  position: absolute;
+  top: calc(50% - 1.9rem);
+  cursor: pointer;
+  // opacity: 0;
+}
+.arrowLeft {
+  left: 18%;
+  .arrow();
+}
+.arrowRight {
+  right: 18%;
+  .arrow(false);
+}
+
+.btn {
+  position: absolute;
+  right: 20vw;
+  bottom: 10vh;
+  font-size: 1rem;
+  color: @blue;
+  padding: 0.5rem 1.5rem;
+  border: 2px solid @blue;
+  border-radius: 2rem;
+}
+.btn:hover {
+  border: 2px solid @blue;
+  background-color: @blue;
+  color: white;
+}
+
+.model {
+  position: relative;
+  height: 65vh;
+  margin-top: 3vh;
+  opacity: 0;
+  cursor: all-scroll;
+  .img {
+    display: block;
+    margin: 10vh auto;
+    width: 38%;
+    cursor: default;
+  }
+}
+
+.animate {
+  .title {
+    opacity: 1;
+    transition: all 1s ease-in;
+  }
+  .info {
+    opacity: 1;
+    transition: all 2s ease-in 1s;
+  }
+  .model {
+    opacity: 1;
+    transition: all 2s ease-in 2s;
+  }
+}

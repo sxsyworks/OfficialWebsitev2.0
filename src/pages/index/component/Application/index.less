@@ -1,0 +1,274 @@
+@import '~@/assets/styles/index.less';
+
+.application {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.bgWrapper {
+  width: auto;
+  height: 100vh;
+  .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(32, 32, 32);
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 2;
+    opacity: 0;
+    -webkit-transition: opacity 1.5s;
+    transition: opacity 1.5s;
+  }
+  .bgHidden {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+  .bg.active {
+    opacity: 1;
+  }
+}
+
+.content {
+  width: 80vw;
+  height: 80vh;
+  position: absolute;
+  top: 0;
+  z-index: 30;
+  padding: 10vh 10vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.left {
+  color: @white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .title {
+    flex: 1;
+    h3 {
+      font-size: 2.625rem;
+      font-weight: 400;
+      color: white;
+      letter-spacing: 0.1rem;
+      line-height: 3.125rem;
+    }
+    h4 {
+      font-size: 1.25rem;
+      color: white;
+      line-height: 1.5rem;
+      letter-spacing: 0.5rem;
+      .fw-light();
+    }
+  }
+
+  .area {
+    flex: 2;
+    margin-bottom: 70%;
+    li {
+      font-size: 1.25rem;
+      margin-bottom: 1vh;
+      cursor: pointer;
+      .text::after {
+        font-size: 1.25rem;
+        content: '〉';
+        padding-left: 1.1458vw;
+      }
+      &.active {
+        color: @blue;
+      }
+    }
+  }
+  .btn {
+    align-self: flex-start;
+    font-size: 1.25rem;
+    color: @white;
+    padding: 0.6rem 2rem;
+    border: 2px solid @white;
+    border-radius: 2rem;
+  }
+  .btn:hover {
+    border: 2px solid #51a8de;
+    background-color: #51a8de;
+    color: white;
+  }
+}
+
+.right {
+  flex: 1;
+  margin-right: 10vw;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .box {
+    position: relative;
+    #svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      fill: transparent;
+      #bar {
+        stroke-width: 2px;
+        stroke: #fff;
+        stroke-dasharray: 5 5;
+        fill: transparent;
+      }
+      .active {
+        position: absolute;
+        border: 5px solid #51a8de;
+        display: block;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  .item {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+
+    &:hover {
+      .text {
+        color: @blue;
+      }
+    }
+
+    .icon {
+      display: block;
+      width: 4.5rem; // 这个的宽度/2是图片的中心
+      height: 3rem;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      margin: 0 auto;
+    }
+
+    .text {
+      display: block;
+      margin-top: 0.5rem;
+      line-height: 1.2;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+  .info {
+    position: absolute;
+    width: 70%;
+    height: auto;
+    top: calc(50% - 10rem - 2vh);
+    left: 15%;
+    color: #fff;
+
+    .icon {
+      display: block;
+      width: 6rem; // 这个的宽度/2是图片的中心
+      height: 4rem;
+      margin: 0 auto;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .text {
+      display: block;
+      font-size: 1.2rem;
+      line-height: 2;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .desc {
+      font-size: 1rem;
+      margin-top: 1rem;
+      line-height: 2.5;
+    }
+  }
+}
+
+.page-en.right {
+  .info .desc {
+    line-height: 1.8;
+    font-size: 0.8rem;
+  }
+  .text {
+    line-height: 1.5;
+  }
+}
+
+// 递归循环函数调用 这两个想合成一个函数，并且medical-@{i}可以作为变量使用 TODO
+// 生成medical-1 ~ medical-8
+@url-folder: '/static/page/applications';
+.medical(@i) when(@i <= 8) {
+  // @name: if(@i<=8, 'medical', 'non-medical');
+  .medical-@{i} {
+    background-image: url('@{url}@{url-folder}/medical-@{i}.jpg');
+  }
+  .icon-medical-@{i} {
+    background-image: url('~@/assets/imgs/application/icon-medical-@{i}.png');
+  }
+  .icon-medical-@{i}-blue {
+    background-image: url('~@/assets/imgs/application/icon-medical-@{i}-blue.png');
+  }
+  .medical((@i+1));
+}
+.medical(1);
+
+// 生成non-medical-1 ~ non-medical-6
+.non-medical(@i) when(@i <= 6) {
+  .non-medical-@{i} {
+    background-image: url('@{url}@{url-folder}/non-medical-@{i}.jpg');
+    left: percentage((@i - 1));
+  }
+  .icon-non-medical-@{i} {
+    background-image: url('~@/assets/imgs/application/icon-non-medical-@{i}.png');
+  }
+  .icon-non-medical-@{i}-blue {
+    background-image: url('~@/assets/imgs/application/icon-non-medical-@{i}-blue.png');
+  }
+  .non-medical((@i+1));
+}
+.non-medical(1);
+
+.page-en {
+  .left .title h4 {
+    display: none;
+  }
+}
+
+@media @max768 {
+  .box {
+    #svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      fill: transparent;
+      #bar {
+        stroke-width: 1px;
+        stroke: #fff;
+        stroke-dasharray: 5 5;
+        fill: transparent;
+      }
+      .active {
+        position: absolute;
+        border: 5px solid #51a8de;
+        display: block;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}

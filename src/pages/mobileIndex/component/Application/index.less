@@ -1,0 +1,231 @@
+@import '~@/assets/styles/index.less';
+
+.application {
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 6rem 0 0;
+  background-color: #666;
+  position: relative;
+}
+
+.bgWrapper {
+  width: auto;
+  height: 100vh;
+  transition: transform 0.5s;
+  .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #666;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 2;
+    opacity: 0;
+    -webkit-transition: opacity 1.5s;
+    transition: opacity 1.5s;
+  }
+  .bgHidden {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+  .bg.active {
+    opacity: 1;
+  }
+}
+
+.content {
+  width: calc(100% - 20vw);
+  height: calc(100% - 20vh);
+  position: absolute;
+  top: 0;
+  z-index: 30;
+  padding: 10vh 10vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.title {
+  color: @white;
+  margin: 0 auto 8vh;
+  text-align: center;
+  h3 {
+    font-size: 1.58rem;
+  }
+  h4 {
+    .fw-light();
+    font-size: 0.67rem;
+    letter-spacing: 3px;
+    color: @gray-f6;
+  }
+}
+
+.area {
+  width: 100%;
+  padding-top: 14vh;
+  .flex-normol();
+  .flex-justify(space-around);
+  color: @white;
+  li {
+    flex: 1;
+    font-size: 1.25rem;
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid transparent;
+    height: 4rem;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    &.active {
+      color: @blue;
+      border-bottom-color: @blue;
+    }
+  }
+}
+
+.right {
+  width: 100%;
+  position: relative;
+  .box {
+    position: relative;
+    margin: 0 auto;
+    #svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      fill: transparent;
+      #bar {
+        stroke-width: 2px;
+        stroke: #fff;
+        stroke-dasharray: 5 5;
+        fill: transparent;
+      }
+      .active {
+        position: absolute;
+        border: 5px solid #51a8de;
+        display: block;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .item {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+
+    &:hover {
+      .text {
+        color: @blue;
+      }
+    }
+
+    .icon {
+      display: block;
+      width: 3.5rem; // 这个的宽度/2是图片的中心
+      height: 2rem;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      margin: 0 auto;
+    }
+
+    .text {
+      display: block;
+      margin-top: 0.5rem;
+      line-height: 1.2;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+  .info {
+    position: absolute;
+    width: 64%;
+    height: auto;
+    top: 15%;
+    left: 18%;
+    color: #fff;
+
+    .icon {
+      display: block;
+      width: 4.5rem; // 这个的宽度/2是图片的中心
+      height: 3rem;
+      margin: 0 auto;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    .text {
+      display: block;
+      font-size: 1.08rem;
+      line-height: 1.2;
+      text-align: center;
+      margin-top: 0.4rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      line-height: 1.3;
+    }
+  }
+}
+
+.page-en {
+  .info {
+    position: absolute;
+    width: 64%;
+    height: auto;
+    top: 20%;
+    left: 18%;
+    color: #fff;
+    .infoTitle {
+      display: none;
+    }
+    .desc {
+      line-height: 1.3;
+    }
+  }
+}
+
+// 生成medical-1 ~ medical-8
+@url-folder: '/static/page/applications';
+.medical(@i) when(@i <= 8) {
+  // @name: if(@i<=8, 'medical', 'non-medical');
+  .medical-@{i} {
+    background-image: url('@{url}@{url-folder}/m-medical-@{i}.png');
+  }
+  .icon-medical-@{i} {
+    background-image: url('~@/assets/imgs/application/icon-medical-@{i}.png');
+  }
+  .icon-medical-@{i}-blue {
+    background-image: url('~@/assets/imgs/application/icon-medical-@{i}-blue.png');
+  }
+  .medical((@i+1));
+}
+.medical(1);
+
+// 生成non-medical-1 ~ non-medical-6
+.non-medical(@i) when(@i <= 6) {
+  .non-medical-@{i} {
+    background-image: url('@{url}@{url-folder}/m-non-medical-@{i}.png');
+  }
+  .icon-non-medical-@{i} {
+    background-image: url('~@/assets/imgs/application/icon-non-medical-@{i}.png');
+  }
+  .icon-non-medical-@{i}-blue {
+    background-image: url('~@/assets/imgs/application/icon-non-medical-@{i}-blue.png');
+  }
+  .non-medical((@i+1));
+}
+.non-medical(1);

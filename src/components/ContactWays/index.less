@@ -1,0 +1,68 @@
+@import '~@/assets/styles/index.less';
+.contact {
+  background-color: @bgBlue;
+  padding: 8vh 9vw;
+  display: flex;
+  justify-content: space-around;
+
+  .type {
+    padding-left: 10vw;
+    width: 25vw;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: auto 80%;
+    color: #505050;
+    font-size: 1rem;
+    line-height: 2;
+    font-weight: 400;
+
+    .title {
+      font-size: 1.25rem;
+    }
+
+    .subtitle {
+      font-weight: 300;
+      line-height: 2;
+      letter-spacing: 0.2rem;
+      // font-family: 'Noto Sans SC-Light', 'Noto Sans SC', sans-serif;
+      .fw-light();
+    }
+
+    .description {
+      color: #777878;
+      padding: 3vh 0;
+      line-height: 2;
+    }
+
+    .method {
+      font-size: 1.25rem;
+      color: rgb(81, 168, 222);
+    }
+  }
+}
+.other {
+  padding: 6vh 0;
+  .description {
+    width: 35vw;
+    margin: 0 auto;
+    color: #777878;
+    padding: 3vh 0;
+    font-size: 1rem;
+    line-height: 2;
+  }
+  .icons {
+    font-size: 0.8rem;
+    padding-top: 20vh;
+  }
+}
+@media @max768 {
+  .contact {
+    display: block;
+    .type {
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: 20vw;
+      margin-bottom: 10vh;
+    }
+  }
+}
