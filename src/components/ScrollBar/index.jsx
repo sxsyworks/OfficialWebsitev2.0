@@ -117,6 +117,12 @@ const ScrollView = () => {
 
   return (
     <div className={styles.mainContainer}>
+      <div className={styles.headerBg}>
+        <div className={styles.headerText}>
+          <div className={styles.titleCn}>配套试剂/芯片</div>
+          <div className={styles.titleEn}>Supporting Reagent / Flow cell</div>
+        </div>
+      </div>
       <div className={styles.wrapper}>
         <div className={styles.verticalPagination}>
           <div className={styles.arrow} onClick={handleUpArrowClick}>
