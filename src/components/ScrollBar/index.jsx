@@ -1,4 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import Explanation1 from './components/Explanation1';
+import Explanation2 from './components/Explanation2';
+import Explanation3 from './components/Explanation3';
+import Explanation4 from './components/Explanation4';
+import Explanation5 from './components/Explanation5';
+import Explanation6 from './components/Explanation6';
+import Explanation7 from './components/Explanation7';
+import Explanation8 from './components/Explanation8';
 import CurveLineImg from './images/curveLine.png';
 import PolygonImg from './images/Polygon.png';
 import styles from './index.less';
@@ -6,14 +14,41 @@ import styles from './index.less';
 const items = [
   { title: '' },
   { title: '' },
-  { title: '通用建库试剂盒', image: require('./images/1.png') },
-  { title: '极速建库试剂盒', image: require('./images/2.png') },
-  { title: '极速条形码建库试剂盒', image: require('./images/3.png') },
-  { title: '直接条形码建库试剂盒', image: require('./images/4.png') },
-  { title: '测序试剂盒', image: require('./images/5.png') },
-  { title: '清洗试剂盒', image: require('./images/6.png') },
-  { title: 'QCell-384', image: require('./images/7.png') },
-  { title: 'QCell-6k', image: require('./images/8.png') },
+  {
+    title: '通用建库试剂盒',
+    image: require('./images/1.png'),
+  },
+  {
+    title: '极速建库试剂盒',
+    image: require('./images/2.png'),
+  },
+  {
+    title: '极速条形码建库试剂盒',
+    image: require('./images/3.png'),
+  },
+  {
+    title: '直接条形码建库试剂盒',
+    image: require('./images/4.png'),
+  },
+  {
+    title: '测序试剂盒',
+    image: require('./images/5.png'),
+  },
+  {
+    title: '清洗试剂盒',
+    image: require('./images/6.png'),
+    description: '',
+    chipType: 'QCell-6K & QCell-384',
+    features: '温和清洁，延长芯片寿命',
+  },
+  {
+    title: 'QCell-384',
+    image: require('./images/7.png'),
+  },
+  {
+    title: 'QCell-6k',
+    image: require('./images/8.png'),
+  },
   { title: '' },
   { title: '' },
 ];
@@ -71,6 +106,8 @@ const ScrollView = () => {
     }
   };
 
+  const activeItem = items[activeIndex] || {};
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.wrapper}>
@@ -113,31 +150,19 @@ const ScrollView = () => {
         </div>
 
         <div className={styles.imageBox}>
-          {items[activeIndex]?.image && <img src={items[activeIndex].image} alt={items[activeIndex].title} />}
+          {activeItem.image && <img src={activeItem.image} alt={activeItem.title} />}
         </div>
       </div>
 
-      <div className={styles.explanation}>
-        <div className={styles.row}>
-          <div className={styles.exp1}>产品介绍</div>
-          <div />
-        </div>
-        <div className={styles.row}>
-          <div className={styles.exp1}>适配芯片类型</div>
-          <div />
-        </div>
-        <div className={styles.row}>
-          <div className={styles.exp1}>产品特点</div>
-          <div />
-        </div>
-        <div className={styles.row}>
-          <div className={styles.exp1}>操作流程</div>
-          <div />
-        </div>
-        <div className={styles.row}>
-          <div className={styles.exp1}>订购信息</div>
-          <div />
-        </div>
+      <div>
+        {activeItem.title === '通用建库试剂盒' && <Explanation1 />}
+        {activeItem.title === '极速建库试剂盒' && <Explanation2 />}
+        {activeItem.title === '极速条形码建库试剂盒' && <Explanation3 />}
+        {activeItem.title === '直接条形码建库试剂盒' && <Explanation4 />}
+        {activeItem.title === '测序试剂盒' && <Explanation5 />}
+        {activeItem.title === '清洗试剂盒' && <Explanation6 />}
+        {activeItem.title === 'QCell-384' && <Explanation7 />}
+        {activeItem.title === 'QCell-6k' && <Explanation8 />}
       </div>
     </div>
   );
