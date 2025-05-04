@@ -1,15 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
-import Explanation1 from './components/Explanation1';
-import Explanation2 from './components/Explanation2';
-import Explanation3 from './components/Explanation3';
-import Explanation4 from './components/Explanation4';
-import Explanation5 from './components/Explanation5';
-import Explanation6 from './components/Explanation6';
-import Explanation7 from './components/Explanation7';
-import Explanation8 from './components/Explanation8';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import CurveLineImg from './images/curveLine.png';
 import PolygonImg from './images/Polygon.png';
 import styles from './index.less';
+
+const Explanation1 = lazy(() => import('./components/Explanation1'));
+const Explanation2 = lazy(() => import('./components/Explanation2'));
+const Explanation3 = lazy(() => import('./components/Explanation3'));
+const Explanation4 = lazy(() => import('./components/Explanation4'));
+const Explanation5 = lazy(() => import('./components/Explanation5'));
+const Explanation6 = lazy(() => import('./components/Explanation6'));
+const Explanation7 = lazy(() => import('./components/Explanation7'));
+const Explanation8 = lazy(() => import('./components/Explanation8'));
 
 const items = [
   { title: '' },
@@ -37,9 +38,6 @@ const items = [
   {
     title: '清洗试剂盒',
     image: require('./images/6.png'),
-    description: '',
-    chipType: 'QCell-6K & QCell-384',
-    features: '温和清洁，延长芯片寿命',
   },
   {
     title: 'QCell-384',
@@ -73,6 +71,15 @@ const ScrollView = () => {
         behavior: 'smooth',
       });
     }
+  }, [activeIndex]);
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === 'ArrowUp') handleUpArrowClick();
+      if (e.key === 'ArrowDown') handleDownArrowClick();
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
   }, [activeIndex]);
 
   const calculateStyles = (index) => {
@@ -153,8 +160,7 @@ const ScrollView = () => {
           {activeItem.image && <img src={activeItem.image} alt={activeItem.title} />}
         </div>
       </div>
-
-      <div>
+      <Suspense fallback={<div style={{ color: '#fff', padding: '1rem' }}>Loading...</div>}>
         {activeItem.title === '通用建库试剂盒' && <Explanation1 />}
         {activeItem.title === '极速建库试剂盒' && <Explanation2 />}
         {activeItem.title === '极速条形码建库试剂盒' && <Explanation3 />}
@@ -163,7 +169,7 @@ const ScrollView = () => {
         {activeItem.title === '清洗试剂盒' && <Explanation6 />}
         {activeItem.title === 'QCell-384' && <Explanation7 />}
         {activeItem.title === 'QCell-6k' && <Explanation8 />}
-      </div>
+      </Suspense>
     </div>
   );
 };
