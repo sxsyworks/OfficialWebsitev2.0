@@ -1,5 +1,3 @@
-@import '~@/assets/styles/index.less';
-
 .contactIcon {
   display: flex;
   justify-content: space-between;
@@ -9,47 +7,42 @@
     position: relative;
     cursor: pointer;
 
+    // Make qrCode visible when hovering directly on it
     &:hover {
       .qrCode {
         opacity: 1;
-        bottom: 8.5em;
+        bottom: 4rem; /* Adjusted distance to make it not go too far */
       }
     }
-    svg {
-      overflow-y: hidden;
+
+    img.iconImage {
+      width: 2rem;
+      height: 2rem;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
     }
 
     .qrCode {
-      transition: opactiy, bottom 0.5s;
-      -webkit-transition: opactiy, bottom 0.5s;
+      transition: opacity 0.5s, bottom 0.5s;
       opacity: 0;
-      width: 12em;
-      height: 12em;
+      width: 6rem;
+      height: 6rem;
       position: absolute;
-      bottom: 4em;
-      left: -3em;
+      bottom: 2.5rem; /* Initial position, closer to the icon */
+      left: -2.5rem;
+      background-color: #fff;
 
       img {
         width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
       }
-
       &:hover {
-        display: none;
+        opacity: 0;
+        bottom: 4rem;
+        cursor: default;
       }
-
-      // TODO
-      // &:hover .qrCode[opacity='0'] {
-      //   display: none;
-      // }
     }
   }
-}
-
-svg:hover .a {
-  fill: @blue;
-  stroke-width: 0;
-}
-
-svg:hover .b {
-  fill: @white;
 }

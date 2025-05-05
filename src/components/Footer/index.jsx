@@ -1,9 +1,10 @@
-import Phone from '@/assets/icons/phone.png';
+import Phone from '@/assets/icons/phoneRing.png';
 import ContactIcons from '@/components/ContactIcons';
 import { MenuData } from '@/utils/constant';
 import { useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, Link, useIntl, useLocation, useModel } from 'umi';
 import './index.less';
+
 const Footer = () => {
   const { initialState } = useModel('@@initialState');
   const { isPhone } = initialState;
@@ -17,11 +18,9 @@ const Footer = () => {
     career: 'hiring@qitantech.com',
   };
 
-  // 重组菜单数据&路由跳转 TODO
   useEffect(() => {
     if (!locale) return;
     const lang = locale === 'zh-CN' ? 'en-US' : 'zh-CN';
-    // let { pathname } = location;
     let arr = [];
     MenuData.map((item) => {
       let { children = [], langs = [], path: topPath } = item;
@@ -43,11 +42,6 @@ const Footer = () => {
             newPath = path[locale];
             otherPath = path[lang];
           }
-          // 需要更新跳转到对应的页面
-          // if (!topPath && pathname === otherPath) {
-          //   let url = newPath || '/404';
-          //   history.push(url);
-          // }
           newPath && acc.push({ ...cur, path: newPath });
           return acc;
         }, []);
@@ -66,7 +60,7 @@ const Footer = () => {
           <div className="title">
             <FormattedMessage id={'contact.' + key} />
           </div>
-          <div className="linkText">{business[key]}</div>
+          {!isPhone && <div className="linkText">{business[key]}</div>}
         </div>,
       );
     });
@@ -77,7 +71,7 @@ const Footer = () => {
     return data.map((item, index) => {
       if (!item.hideInFooter) {
         return (
-          <div key={item.name} className="title busItem">
+          <div key={item.name} className="footerLinks">
             {item.path ? (
               <Link to={item.path}>
                 <FormattedMessage id={'menu.' + item.name} />
@@ -87,7 +81,7 @@ const Footer = () => {
                 <FormattedMessage id={'menu.' + item.name} />
               </div>
             )}
-            <ul key={item.name + index} className="link">
+            <ul className="footerLinkList">
               {item.children &&
                 item.children.map((child) => {
                   return (
@@ -104,38 +98,45 @@ const Footer = () => {
       }
     });
   }, [data]);
+
   return (
-    <div className={`${formatMessage({ id: 'page.css.footer' })} ${isPhone ? 'mobileFooter' : ''}`} id="footer">
+    <div className={`footer ${isPhone ? 'mobileFooter' : ''}`} id="footer">
       <div className="topBox">
         <div className="leftBox">
-          <Link to="/">
-            {/* <div className="logo">
-              <Logo />
-            </div> */}
-            <img src={require('@/assets/imgs/seo-logo.jpg')} alt="齐碳科技logo" className="seoLogo" title="齐碳科技" />
-          </Link>
+          <div>
+            <Link to="/">
+              <img
+                src={require('@/assets/icons/logoWhite.png')}
+                alt="齐碳科技logo"
+                className="seoLogo"
+                title="齐碳科技"
+              />
+            </Link>
+          </div>
           <div className="cooperation">{businessDom}</div>
         </div>
-        <div className="footerMenu" id="footerMenu">
-          {links}
-        </div>
+        <div className="footerMenu">{links}</div>
       </div>
       <div className="bottomBox">
-        <div className="linkText">
-          备案/许可证号： 蜀ICP备17004819号-1
-          <div>Copyright ©2016-2022 Qitan Tech. All Rights Reserved.</div>
-        </div>
-        <div className="centerBox">
-          <img src={Phone} alt="telephone" />
-          +86-400-800-2038
-        </div>
-        <div className="contact">
-          <div className="contactIcon">
-            <ContactIcons />
+        <div className="rowBox">
+          <div className="centerBox">
+            <img src={Phone} alt="telephone" className="phoneIcon" />
+            +86-400-800-2038
           </div>
+          <div className="contact">
+            <div className="contactIcon">
+              <ContactIcons />
+            </div>
+          </div>
+        </div>
+
+        <div className="legalBox">
+          <div className="linkText1">备案/许可证号： 蜀ICP备17004819号-1</div>
+          <div className="linkText2">Copyright ©2016-2022 Qitan Tech. All Rights Reserved.</div>
         </div>
       </div>
     </div>
   );
 };
+
 export default Footer;
