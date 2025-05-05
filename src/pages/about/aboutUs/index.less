@@ -8,45 +8,41 @@
     .flex();
     background-image: url('~@/assets/imgs/about/bg.png');
     background-repeat: no-repeat;
-
     .logo {
       .flex-normol();
       width: 45vw;
     }
-
     .desc {
       flex: 1;
       height: 100%;
       padding: 0.5rem 0;
       font-size: 1rem;
+      font-size: 1rem;
       .flex-col();
       .flex-justify(center);
-
       p {
         font-size: 1rem;
       }
-
       .title {
         font-size: 1.5rem;
         color: @blue;
         padding-bottom: 3rem;
       }
-
       .phagram {
         font-size: 1rem;
         padding-left: 1rem;
         color: @blue;
         line-height: 2;
         padding-bottom: 4.5625rem;
+        font-size: 1rem;
       }
-
       .text {
         font-size: 1rem;
         padding: 0 1rem 3.1875rem;
         color: @gray-78;
         line-height: 2;
         word-break: break-word;
-
+        font-size: 1rem;
         &:first-of-type {
           color: @blue;
           padding-bottom: 4.5625rem;
@@ -61,25 +57,21 @@
     padding: 0;
     overflow-x: hidden;
     z-index: -999;
-
     .sloganBox {
       .flex-normol();
       align-items: center;
       position: relative;
-
       .slogan {
         flex: 1;
         width: 33.3%;
         padding: 5rem 3.5%;
         text-align: center;
         z-index: 98;
-
         .img {
           width: 80%;
           margin: 10% 10%;
           display: block;
         }
-
         .name {
           box-sizing: border-box;
           height: 7.5rem;
@@ -89,16 +81,15 @@
           font-size: 2.25rem;
           font-weight: 400;
           line-height: 3rem;
-
           h6 {
             font-size: 1.5rem;
             .fw-light();
             font-weight: 300;
             line-height: 1.5;
             letter-spacing: 0.3rem;
+            .fw-light();
           }
         }
-
         .desc {
           box-sizing: border-box;
           height: 7.5rem;
@@ -114,14 +105,12 @@
           line-height: 1.5;
           padding-top: 1rem;
         }
-
         &:nth-child(3) {
           .desc {
             padding-top: 0;
           }
         }
       }
-
       .current {
         .name {
           display: none;
@@ -130,7 +119,6 @@
           display: block;
         }
       }
-
       .bgCurrent {
         width: 33.3%;
         height: 100%;
@@ -155,72 +143,51 @@
       color: #5184de;
     }
   }
-
-  .scrollViewSection {
-    margin-top: 6rem;
-  
-    overflow: hidden;
-}
 }
 
-// Page EN version
 .page-en {
-  .slogans {
-    .slogan {
-      .desc {
-        font-size: 1.5rem !important;
-      }
-    }
+  .slogans .slogan .desc {
+    font-size: 1.5rem !important;
   }
-
   .radioTitle {
-    pointer-events: none; // 禁止英文页面点击时间轴标题
+    pointer-events: none; // 英文一定要禁止点击标题
     .flex-justify(center);
     width: 100%;
-
     &:last-child {
       display: none;
     }
   }
 }
 
-// Mobile responsive
 @media @max768 {
   .aboutUs {
     .intro {
       padding: 5vh 6vw;
-
       .logo {
         display: none;
       }
-
       .desc {
         .title {
           text-align: center;
         }
       }
     }
-
     .slogans {
       .sloganBox {
         .slogan {
           padding: 2rem 3.5%;
-
           .name {
             font-size: 1.5rem;
             padding-top: 0;
-
             h6 {
               font-size: 1rem;
             }
           }
-
           .desc {
             font-size: 1rem;
             letter-spacing: 0;
           }
         }
-
         .current {
           .desc {
             width: auto;
@@ -228,30 +195,18 @@
         }
       }
     }
-
     .develope {
       margin: 8rem auto 6rem;
     }
-
-    // 🆕 Mobile ScrollView style
-    .scrollViewSection {
-      margin-top: 3rem;
-      padding: 0 3vw;
-    }
   }
-
   .page-en {
-    .slogans {
-      .sloganBox {
-        .slogan {
-          .name {
-            padding-top: 1rem;
-          }
-          .desc {
-            font-size: 0.8rem !important;
-            line-height: 1.6;
-          }
-        }
+    .slogans .sloganBox .slogan {
+      .name {
+        padding-top: 1rem;
+      }
+      .desc {
+        font-size: 0.8rem !important;
+        line-height: 1.6;
       }
     }
   }

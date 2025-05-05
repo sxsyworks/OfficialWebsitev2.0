@@ -1,6 +1,5 @@
 import TimeLine from '@/components/TimeLine';
 import Title from '@/components/Title';
-import ScrollView from '@/components/ScrollBar';
 import { useWow } from '@/utils/common';
 import { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'umi';
@@ -103,7 +102,7 @@ export default function AboutUs() {
             {formatMessage({ id: 'about.aboutUs.originTitle' })}
           </h2>
           {new Array(4).fill(1).map((item, index) => (
-            <p key={index} className={styles.text + ' wow animate__fadeInUpSmall'}>
+            <p className={styles.text + ' wow animate__fadeInUpSmall'}>
               {formatMessage({ id: `about.aboutUs.originText${index + 1}` })}
             </p>
           ))}
@@ -136,11 +135,10 @@ export default function AboutUs() {
           <div className={styles.bgCurrent} id="bg"></div>
         </div>
       </section>
-
       <section className={styles.develope}>
         <div className={styles.radioTitle} onClick={changeTitle}>
           {AboutUsTimeLine.map((item) => (
-            <div key={item.key}>
+            <div>
               <Title
                 name={item.locale}
                 style={{ cursor: 'pointer', color: curTimeLine === item.key ? '#51A8DE' : '#505050' }}
@@ -149,11 +147,6 @@ export default function AboutUs() {
           ))}
         </div>
         <TimeLine isDev={true} curTimeLine={curTimeLine} />
-      </section>
-
-      {/* ScrollView added at the bottom ✅ */}
-      <section className={styles.scrollViewSection}>
-        <ScrollView />
       </section>
     </div>
   );
