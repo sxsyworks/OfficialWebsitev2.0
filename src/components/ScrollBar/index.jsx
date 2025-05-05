@@ -55,11 +55,13 @@ const ScrollView = () => {
   const initialIndex = 2;
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const scrollRef = useRef(null);
+  // const isScrollingRef = useRef(false);
 
   useEffect(() => {
     const container = scrollRef.current;
     const activeItem = container.children[activeIndex];
 
+    //if (activeItem && !isScrollingRef.current) {
     if (activeItem) {
       const containerHeight = container.clientHeight;
       const itemOffsetTop = activeItem.offsetTop;
@@ -81,6 +83,44 @@ const ScrollView = () => {
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [activeIndex]);
+
+  // useEffect(() => {
+  //   const container = scrollRef.current;
+
+  //   const handleScroll = () => {
+  //     isScrollingRef.current = true;
+
+  //     const containerTop = container.getBoundingClientRect().top;
+  //     const containerCenter = containerTop + container.clientHeight / 2;
+
+  //     let closestIndex = activeIndex;
+  //     let closestDistance = Infinity;
+
+  //     Array.from(container.children).forEach((child, index) => {
+  //       const rect = child.getBoundingClientRect();
+  //       const childCenter = rect.top + rect.height / 2;
+  //       const distance = Math.abs(childCenter - containerCenter);
+
+  //       if (distance < closestDistance) {
+  //         closestDistance = distance;
+  //         closestIndex = index;
+  //       }
+  //     });
+
+  //     if (closestIndex !== activeIndex && closestIndex >= 2 && closestIndex <= 9) {
+  //       setActiveIndex(closestIndex);
+  //     }
+
+  //     // Clear the flag shortly after scroll ends
+  //     clearTimeout(handleScroll._timeout);
+  //     handleScroll._timeout = setTimeout(() => {
+  //       isScrollingRef.current = false;
+  //     }, 200);
+  //   };
+
+  //   container.addEventListener('scroll', handleScroll);
+  //   return () => container.removeEventListener('scroll', handleScroll);
+  // }, [activeIndex]);
 
   const calculateStyles = (index) => {
     if (index === activeIndex) {
