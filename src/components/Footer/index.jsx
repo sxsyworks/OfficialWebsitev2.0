@@ -3,6 +3,7 @@ import ContactIcons from '@/components/ContactIcons';
 import { MenuData } from '@/utils/constant';
 import { useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, Link, useIntl, useLocation, useModel } from 'umi';
+//useIntl needs "typescript": "^5.8.3"
 import './index.less';
 
 const Footer = () => {
@@ -60,7 +61,7 @@ const Footer = () => {
           <div className="title">
             <FormattedMessage id={'contact.' + key} />
           </div>
-          {!isPhone && <div className="linkText">{business[key]}</div>}
+          <div className="linkText">{business[key]}</div>
         </div>,
       );
     });
@@ -103,19 +104,29 @@ const Footer = () => {
     <div className={`footer ${isPhone ? 'mobileFooter' : ''}`} id="footer">
       <div className="topBox">
         <div className="leftBox">
-          <div>
-            <Link to="/">
-              <img
-                src={require('@/assets/icons/logoWhite.png')}
-                alt="齐碳科技logo"
-                className="seoLogo"
-                title="齐碳科技"
-              />
-            </Link>
-          </div>
+          {isPhone && (
+            <div className="phoneContact">
+              <p className="text1">联系我们</p>
+              <p className="text2">Contact us</p>
+            </div>
+          )}
+
+          {!isPhone && (
+            <div>
+              <Link to="/">
+                <img
+                  src={require('@/assets/icons/logoWhite.png')}
+                  alt="齐碳科技logo"
+                  className="seoLogo"
+                  title="齐碳科技"
+                />
+              </Link>
+            </div>
+          )}
           <div className="cooperation">{businessDom}</div>
         </div>
-        <div className="footerMenu">{links}</div>
+
+        {!isPhone && <div className="footerMenu">{links}</div>}
       </div>
       <div className="bottomBox">
         <div className="rowBox">
