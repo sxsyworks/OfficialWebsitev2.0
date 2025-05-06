@@ -55,8 +55,8 @@ export default {
   'page.404.error1': 'Please return to the homepage or contact us for assistance.',
   'page.css.title': 'title-en',
   'page.css.bgTitle': 'bgTitle-en',
-  'page.css.menus': 'menus-en',
-  'page.css.footer': 'footer-en',
+  'page.css.menus': 'menus',
+  'page.css.footer': 'footer',
   'page.css.page': 'page-en',
 
   'page.nanoporeGene.seo.title': 'Nanopore Sequencing-QITAN',

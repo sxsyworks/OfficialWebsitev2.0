@@ -175,61 +175,61 @@ export const MenuData = [
       // { name: 'tools', path: '/products/tools' },
     ],
   },
-  {
-    name: 'applications',
-    children: [
-      {
-        name: 'microorganism',
-        path: '/applications/microorganism',
-        info: {
-          title: '微生物研究-齐碳科技',
-          keywords: '微生物研究,微生物基因组,长片段,结构变异,基因组组装',
-          description:
-            '齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增、无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序，使用齐碳科技长片段纳米孔测序技术探索微生物的秘密。',
-        },
-      },
-      {
-        name: 'human',
-        path: '/applications/human',
-        info: {
-          title: '人类研究-齐碳科技',
-          keywords: '人类基因组,转录组,遗传病, SNP,结构变异',
-          description:
-            '齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增、无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序，使用齐碳科技纳米孔基因测序技术探索基因编码的秘密。',
-        },
-      },
-      {
-        name: 'animal',
-        path: '/applications/animal',
-        info: {
-          title: '动物研究-齐碳科技',
-          keywords: '动物基因组,动物转录组,基因组重测序,SNP,重复序列',
-          description:
-            '动物基因组学研究能够为许多科学研究领域提供宝贵见解，完成这些动物全基因组序列图谱的构建，并以此为核心，开展一系列基因注释、物种进化等研究，为人类疾病研究、动物环境适应性和进化、物种多样性保护以及气候变化等领域的深入研究奠定基础。齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增、无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序。',
-        },
-      },
-      {
-        name: 'plant',
-        path: '/applications/plant',
-        info: {
-          title: '植物研究-齐碳科技',
-          keywords: '植物基因组, 植物转录组,基因组重测序,植物多样性,结构变异',
-          description:
-            '齐碳科技纳米孔基因测序仪长读长的优势，能够帮助更加准确地对大型且高度重复的植物基因组进行组装，更容易覆盖复杂区域，进一步解决结构变异等，为分子育种、遗传关系、进化过程的研究提供新思路',
-        },
-      },
-      {
-        name: 'clinical',
-        path: '/applications/clinical',
-        info: {
-          title: '临床研究-齐碳科技',
-          keywords: '遗传病研究,肿瘤研究,感染病原鉴定,靶向富集的核酸文库,药物敏感性检测',
-          description:
-            '齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序，除了常规的SNP/InDel鉴定外，更有利于长片段复杂区域鉴定，比如利用长片段优势进行结构变异鉴定、病原鉴定等。另外，纳米孔基因测序仪设备小巧便携的特性，可广泛应用于各地方单位实验室，而通量灵活无需凑样检测、实时测序的特点，则非常适合需要快速获取测序结果的医疗单位和检测机构。',
-        },
-      },
-    ],
-  },
+  // {
+  //   name: 'applications',
+  //   children: [
+  //     {
+  //       name: 'microorganism',
+  //       path: '/applications/microorganism',
+  //       info: {
+  //         title: '微生物研究-齐碳科技',
+  //         keywords: '微生物研究,微生物基因组,长片段,结构变异,基因组组装',
+  //         description:
+  //           '齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增、无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序，使用齐碳科技长片段纳米孔测序技术探索微生物的秘密。',
+  //       },
+  //     },
+  //     {
+  //       name: 'human',
+  //       path: '/applications/human',
+  //       info: {
+  //         title: '人类研究-齐碳科技',
+  //         keywords: '人类基因组,转录组,遗传病, SNP,结构变异',
+  //         description:
+  //           '齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增、无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序，使用齐碳科技纳米孔基因测序技术探索基因编码的秘密。',
+  //       },
+  //     },
+  //     {
+  //       name: 'animal',
+  //       path: '/applications/animal',
+  //       info: {
+  //         title: '动物研究-齐碳科技',
+  //         keywords: '动物基因组,动物转录组,基因组重测序,SNP,重复序列',
+  //         description:
+  //           '动物基因组学研究能够为许多科学研究领域提供宝贵见解，完成这些动物全基因组序列图谱的构建，并以此为核心，开展一系列基因注释、物种进化等研究，为人类疾病研究、动物环境适应性和进化、物种多样性保护以及气候变化等领域的深入研究奠定基础。齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增、无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序。',
+  //       },
+  //     },
+  //     {
+  //       name: 'plant',
+  //       path: '/applications/plant',
+  //       info: {
+  //         title: '植物研究-齐碳科技',
+  //         keywords: '植物基因组, 植物转录组,基因组重测序,植物多样性,结构变异',
+  //         description:
+  //           '齐碳科技纳米孔基因测序仪长读长的优势，能够帮助更加准确地对大型且高度重复的植物基因组进行组装，更容易覆盖复杂区域，进一步解决结构变异等，为分子育种、遗传关系、进化过程的研究提供新思路',
+  //       },
+  //     },
+  //     {
+  //       name: 'clinical',
+  //       path: '/applications/clinical',
+  //       info: {
+  //         title: '临床研究-齐碳科技',
+  //         keywords: '遗传病研究,肿瘤研究,感染病原鉴定,靶向富集的核酸文库,药物敏感性检测',
+  //         description:
+  //           '齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序，除了常规的SNP/InDel鉴定外，更有利于长片段复杂区域鉴定，比如利用长片段优势进行结构变异鉴定、病原鉴定等。另外，纳米孔基因测序仪设备小巧便携的特性，可广泛应用于各地方单位实验室，而通量灵活无需凑样检测、实时测序的特点，则非常适合需要快速获取测序结果的医疗单位和检测机构。',
+  //       },
+  //     },
+  //   ],
+  // },
   {
     name: 'support',
     children: [
@@ -295,7 +295,6 @@ export const MenuData = [
   },
   {
     name: 'news',
-    langs: ['zh-CN'],
     children: [
       {
         name: 'dynamic',
@@ -680,5 +679,232 @@ export const ContactMapAddr = [
     coord: [118.59856, 32.02044],
     // name: '成都生产基地',
     // location: '双流区凤凰路618号天府国际生物医学产业加速器6栋附104',
+  },
+];
+
+export const MenuDataOld = [
+  {
+    name: 'products',
+    children: [
+      {
+        name: 'nanoporeGene',
+        path: '/products/nanoporeGene',
+        info: {
+          title: '纳米孔测序-齐碳科技',
+          keywords: '纳米孔测序,基因测序,长读长,四代测序,单分子测序',
+          description:
+            '纳米孔链测序法是通过电场力驱动单链核酸分子穿过纳米尺寸的蛋白孔道，由于不同的碱基通过纳米孔道时产生了不同阻断程度的电流信号，由此可根据电流信号识别每条核酸分子上的碱基信息，从而实现对单链核酸分子的测序。',
+        },
+      },
+      {
+        name: 'sequencer',
+        path: '/products/sequencer',
+        info: {
+          title: '基因测序仪-齐碳科技',
+          keywords: '基因测序仪,长读长测序, QNome,第四代基因测序仪,国产基因测序仪',
+          description: '国产第四代基因测序仪，实时、便携的长读长测序设备，让基因测序走进更多使用场景',
+        },
+      },
+      {
+        name: 'supplies',
+        path: '/products/supplies',
+        info: {
+          title: '测序耗材-齐碳科技',
+          keywords: '测序试剂盒,试剂盒,测序芯片,纳米孔基因测序仪,DNA文库',
+          description: '国产第四代基因测序仪，实时、便携的长读长测序设备，让基因测序走进更多使用场景',
+        },
+      },
+      {
+        name: 'software',
+        path: '/products/software',
+        info: {
+          title: '测序软件-齐碳科技',
+          keywords: '测序软件,碱基识别,Qpreasy,芯片检查，测序数据分析',
+          description:
+            '测序软件运行在计算工作站上，控制纳米孔基因测序仪实现测序流程，包括芯片检查、测序、碱基识别和测序结果分析。测序软件向用户提供直观友好的界面，操作简单便捷。',
+        },
+      },
+      // { name: 'tools', path: '/products/tools' },
+    ],
+  },
+  {
+    name: 'applications',
+    children: [
+      {
+        name: 'microorganism',
+        path: '/applications/microorganism',
+        info: {
+          title: '微生物研究-齐碳科技',
+          keywords: '微生物研究,微生物基因组,长片段,结构变异,基因组组装',
+          description:
+            '齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增、无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序，使用齐碳科技长片段纳米孔测序技术探索微生物的秘密。',
+        },
+      },
+      {
+        name: 'human',
+        path: '/applications/human',
+        info: {
+          title: '人类研究-齐碳科技',
+          keywords: '人类基因组,转录组,遗传病, SNP,结构变异',
+          description:
+            '齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增、无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序，使用齐碳科技纳米孔基因测序技术探索基因编码的秘密。',
+        },
+      },
+      {
+        name: 'animal',
+        path: '/applications/animal',
+        info: {
+          title: '动物研究-齐碳科技',
+          keywords: '动物基因组,动物转录组,基因组重测序,SNP,重复序列',
+          description:
+            '动物基因组学研究能够为许多科学研究领域提供宝贵见解，完成这些动物全基因组序列图谱的构建，并以此为核心，开展一系列基因注释、物种进化等研究，为人类疾病研究、动物环境适应性和进化、物种多样性保护以及气候变化等领域的深入研究奠定基础。齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增、无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序。',
+        },
+      },
+      {
+        name: 'plant',
+        path: '/applications/plant',
+        info: {
+          title: '植物研究-齐碳科技',
+          keywords: '植物基因组, 植物转录组,基因组重测序,植物多样性,结构变异',
+          description:
+            '齐碳科技纳米孔基因测序仪长读长的优势，能够帮助更加准确地对大型且高度重复的植物基因组进行组装，更容易覆盖复杂区域，进一步解决结构变异等，为分子育种、遗传关系、进化过程的研究提供新思路',
+        },
+      },
+      {
+        name: 'clinical',
+        path: '/applications/clinical',
+        info: {
+          title: '临床研究-齐碳科技',
+          keywords: '遗传病研究,肿瘤研究,感染病原鉴定,靶向富集的核酸文库,药物敏感性检测',
+          description:
+            '齐碳科技纳米孔基因测序仪，支持直接对原始DNA模板进行无扩增无偏好的测序，支持cDNA测序，支持短片段与长片段DNA测序，除了常规的SNP/InDel鉴定外，更有利于长片段复杂区域鉴定，比如利用长片段优势进行结构变异鉴定、病原鉴定等。另外，纳米孔基因测序仪设备小巧便携的特性，可广泛应用于各地方单位实验室，而通量灵活无需凑样检测、实时测序的特点，则非常适合需要快速获取测序结果的医疗单位和检测机构。',
+        },
+      },
+    ],
+  },
+  {
+    name: 'support',
+    children: [
+      {
+        name: 'customer',
+        path: '/support/customer',
+        info: {
+          title: '售后服务-齐碳科技',
+          keywords: '售后服务,齐碳科技,基因测序',
+          description:
+            '齐碳科技在中国多个地区设有技术服务中心和办事处，我们将第一时间响应客户需求，提供高效优质的售后服务。',
+        },
+      },
+      {
+        name: 'document',
+        path: {
+          'zh-CN': '/support/document',
+          'en-US': '/support/documentArticle',
+        },
+        mapPath: '/support/documentArticle',
+        onlyPc: true,
+        info: {
+          title: '文档中心-齐碳科技',
+          keywords: '文档中心,齐碳科技,基因测序',
+          description:
+            '齐碳科技是一家致力于纳米孔基因测序仪及配套芯片、试剂的自主研发、制造与应用开发的国家高新技术企业。凭借国际一流的研发实力，公司成功发布国内首款自主研发的纳米孔基因测序仪并实现商业化，将为生命科学及相关领域的研究和应用提供更加便捷、有效的解决方案。',
+        },
+      },
+      {
+        name: 'video',
+        path: '/support/video',
+        info: {
+          title: '视频集锦-齐碳科技',
+          keywords: '视频集锦,齐碳科技,基因测序',
+          description:
+            '齐碳科技是一家致力于纳米孔基因测序仪及配套芯片、试剂的自主研发、制造与应用开发的国家高新技术企业。凭借国际一流的研发实力，公司成功发布国内首款自主研发的纳米孔基因测序仪并实现商业化，将为生命科学及相关领域的研究和应用提供更加便捷、有效的解决方案。',
+        },
+      },
+      {
+        name: 'conversionTool',
+        path: {
+          'zh-CN': '/support/conversionTool',
+        },
+        info: {
+          title: '换算工具-齐碳科技',
+          keywords: '换算工具,齐碳科技,单位转换,上样体积计算器',
+          description:
+            'DNA测序单位转换及上样体积计算器，通过输入DNA摩尔数、DNA长度以及样品浓度，即可快速得到最终上样体积数。',
+        },
+      },
+      {
+        name: 'community',
+        path: 'https://github.com/QITAN-TECHNOLOGY',
+        target: '_blank',
+        info: {
+          title: '交流社区-齐碳科技',
+          keywords: '换算工具,齐碳科技,github',
+          description:
+            '齐碳科技是一家致力于纳米孔基因测序仪及配套芯片、试剂的自主研发、制造与应用开发的国家高新技术企业。凭借国际一流的研发实力，公司成功发布国内首款自主研发的纳米孔基因测序仪并实现商业化，将为生命科学及相关领域的研究和应用提供更加便捷、有效的解决方案。',
+        },
+      },
+    ],
+  },
+  {
+    name: 'news',
+    langs: ['zh-CN'],
+    children: [
+      {
+        name: 'dynamic',
+        path: '/news/dynamic',
+        info: {
+          title: '企业动态-齐碳科技',
+          keywords: '齐碳科技官方公众号，企业动态，齐碳科技',
+          description: '',
+        },
+      },
+      {
+        name: 'report',
+        path: '/news/report',
+        info: {
+          title: '媒体报道-齐碳科技',
+          keywords: '媒体报道，齐碳科技',
+          description: '',
+        },
+      },
+    ],
+  },
+  {
+    name: 'about',
+    path: {
+      'en-US': '/about/aboutUs',
+    },
+    children: [
+      {
+        name: 'aboutUs',
+        path: {
+          'zh-CN': '/about/aboutUs',
+        },
+        info: {
+          title: '关于我们-齐碳科技',
+          keywords: '',
+          description: '',
+        },
+      },
+      {
+        name: 'joinUs',
+        path: {
+          'zh-CN': '/about/joinUs',
+        },
+        info: {
+          title: '加入齐碳-齐碳科技',
+          keywords: '招聘，齐碳科技，福利政策，职位搜索，股票期权',
+          description: '',
+        },
+      },
+    ],
+  },
+  {
+    name: 'contact',
+    path: '/contact',
+    info: {
+      title: '联系我们-齐碳科技',
+    },
+    hideInFooter: true,
   },
 ];
