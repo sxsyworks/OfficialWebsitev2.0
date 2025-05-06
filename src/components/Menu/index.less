@@ -118,10 +118,10 @@
   left: 0;
   width: 100vw;
   background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(4px);
+  //backdrop-filter: blur(4px);
   z-index: 98;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  animation: slideDownFade 0.3s ease-out forwards;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  animation: submenuFadeDown 0.5s ease-out forwards;
 
   .submenuInner {
     display: flex;
@@ -149,11 +149,12 @@
     transform: translateY(-8px);
     animation: submenuItemFadeIn 2s ease forwards;
 
-    a {
+    .submenuChildren {
       color: #335697;
 
       &:hover {
         color: #2773ff;
+        cursor: pointer;
       }
     }
   }
@@ -177,6 +178,15 @@
       flex-direction: column;
       padding: 1rem 2rem;
       gap: 1rem;
+
+      a {
+        color: #335697;
+
+        &:hover {
+          color: #2773ff;
+          cursor: pointer;
+        }
+      }
     }
   }
 
@@ -198,6 +208,15 @@
       flex-direction: column;
       padding: 1rem 2rem;
       gap: 1rem;
+
+      a {
+        color: #335697;
+
+        &:hover {
+          color: #2773ff;
+          cursor: pointer;
+        }
+      }
     }
   }
 

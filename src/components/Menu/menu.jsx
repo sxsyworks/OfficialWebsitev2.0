@@ -1,6 +1,6 @@
 import LogoBlue from '@/assets/icons/logoBlue.png';
 import Phone from '@/assets/icons/phoneBlue.png';
-import { LangItems, MenuData } from '@/utils/constant';
+import { LangItems, MenuDataNew } from '@/utils/constant';
 import { Dropdown } from 'antd';
 import { useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, getLocale, history, Link, setLocale, useIntl, useLocation } from 'umi';
@@ -15,19 +15,19 @@ export default function Menu() {
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [isSubmenuHovered, setIsSubmenuHovered] = useState(false);
   const [hoveredSubmenuIndex, setHoveredSubmenuIndex] = useState(null);
+  const [clickedSubmenuIndex, setClickedSubmenuIndex] = useState(null); // NEW STATE
 
   const lang = useMemo(() => {
     return LangItems.find((item) => item.key === curLang)?.lang;
   }, [curLang]);
 
-  // Reorganize menu data & route navigation
   useEffect(() => {
     if (!curLang) return;
     let { pathname } = location;
     let arr = [];
     let otherLang = curLang === 'zh-CN' ? 'en-US' : 'zh-CN';
 
-    MenuData.map((item) => {
+    MenuDataNew.map((item) => {
       let { children = [], langs = [], path: topPath } = item;
       let newItem = item;
       let isShowItem = !langs.length || langs.includes(curLang);
@@ -69,7 +69,7 @@ export default function Menu() {
     });
 
     setData(arr);
-  }, [curLang, MenuData, location]);
+  }, [curLang, MenuDataNew, location]);
 
   const MenuDataItem = useMemo(() => {
     return data?.map((item, index) => {
@@ -114,11 +114,13 @@ export default function Menu() {
 
   const handleMenuHover = (item) => {
     setHoveredMenu(item);
+    setClickedSubmenuIndex(null); // reset on hover of new menu
   };
 
   const handleMenuLeave = () => {
     if (!isSubmenuHovered) {
       setHoveredMenu(null);
+      setClickedSubmenuIndex(null); // reset on leave
     }
   };
 
@@ -128,8 +130,12 @@ export default function Menu() {
 
   const handleSubmenuLeave = () => {
     setIsSubmenuHovered(false);
-
     setHoveredMenu(null);
+    setClickedSubmenuIndex(null); // reset when leaving submenu
+  };
+
+  const handleSubmenuClick = (idx) => {
+    setClickedSubmenuIndex(idx === clickedSubmenuIndex ? null : idx);
   };
 
   return (
@@ -176,32 +182,49 @@ export default function Menu() {
                 key={idx}
                 onMouseEnter={() => setHoveredSubmenuIndex(idx)}
                 onMouseLeave={() => setHoveredSubmenuIndex(null)}
+                onClick={() => {
+                  if (hoveredMenu?.name === 'products' && idx === 1) {
+                    handleSubmenuClick(idx);
+                  }
+                }}
               >
-                {!child.target ? (
-                  <Link to={child.path} target="_parent">
-                    <FormattedMessage id={'menu.' + child.name} />
-                  </Link>
-                ) : (
-                  <a href={child.path} target={child.target} rel="noopener noreferrer">
-                    <FormattedMessage id={'menu.' + child.name} />
-                  </a>
-                )}
+                <p className={styles.submenuChildren}>
+                  <FormattedMessage id={'menu.' + child.name} />
+                </p>
               </div>
             ))}
           </div>
 
-          {/* {hoveredSubmenuIndex === 1 && ( */}
           <div className={styles.submenuRight}>
             <div className={styles.submenuRightTop}>
-              <div className={styles.submenuRightTopLeft}>测序平台</div>
-              <div className={styles.submenuRightTopRight}>top right</div>
+              {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
+                <div className={styles.submenuRightTopLeft}>测序平台</div>
+              )}
+              {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
+                <div className={styles.submenuRightTopRight}>
+                  <a href="">QNome</a>
+                  <a href="">QPursue</a>
+                </div>
+              )}
             </div>
             <div className={styles.submenuRightBottom}>
-              <div className={styles.submenuRightBottomLeft}>配套试剂/芯片</div>
-              <div className={styles.submenuRightBottomRight}>bottom right</div>
+              {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
+                <div className={styles.submenuRightBottomLeft}>配套试剂/芯片</div>
+              )}
+              {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
+                <div className={styles.submenuRightBottomRight}>
+                  <a href="">建库试剂盒</a>
+                  <a href="">极速建库试剂盒</a>
+                  <a href="">极速条形码建库试剂盒</a>
+                  <a href="">直接条形码建库试剂盒</a>
+                  <a href="">测序试剂盒</a>
+                  <a href="">清洗试剂盒</a>
+                  <a href="">QCell-384</a>
+                  <a href="">QCell-6k</a>
+                </div>
+              )}
             </div>
           </div>
-          {/* )} */}
         </div>
       )}
     </div>

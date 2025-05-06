@@ -130,12 +130,12 @@ export const LangItems = [
 ];
 
 // 菜单列表配置 TODO info可以取消
-export const MenuData = [
+export const MenuDataNew = [
   {
     name: 'products',
     children: [
       {
-        name: 'nanoporeGene',
+        name: 'technicalPrinciple',
         path: '/products/nanoporeGene',
         info: {
           title: '纳米孔测序-齐碳科技',
@@ -145,16 +145,18 @@ export const MenuData = [
         },
       },
       {
-        name: 'sequencer',
+        name: 'NanoporeSequencingPlatform',
+        function: 'handle1.2',
         path: '/products/sequencer',
         info: {
           title: '基因测序仪-齐碳科技',
           keywords: '基因测序仪,长读长测序, QNome,第四代基因测序仪,国产基因测序仪',
           description: '国产第四代基因测序仪，实时、便携的长读长测序设备，让基因测序走进更多使用场景',
         },
+        //children: [{ names: 'sequencer' }, { names: 'supplies' }],
       },
       {
-        name: 'supplies',
+        name: 'LaboratoryAutomation',
         path: '/products/supplies',
         info: {
           title: '测序耗材-齐碳科技',
@@ -163,7 +165,7 @@ export const MenuData = [
         },
       },
       {
-        name: 'software',
+        name: 'OverallSolution',
         path: '/products/software',
         info: {
           title: '测序软件-齐碳科技',
@@ -234,7 +236,7 @@ export const MenuData = [
     name: 'support',
     children: [
       {
-        name: 'customer',
+        name: 'Services',
         path: '/support/customer',
         info: {
           title: '售后服务-齐碳科技',
@@ -244,7 +246,7 @@ export const MenuData = [
         },
       },
       {
-        name: 'document',
+        name: 'Publications',
         path: {
           'zh-CN': '/support/document',
           'en-US': '/support/documentArticle',
@@ -259,7 +261,7 @@ export const MenuData = [
         },
       },
       {
-        name: 'video',
+        name: 'Videos',
         path: '/support/video',
         info: {
           title: '视频集锦-齐碳科技',
@@ -295,6 +297,7 @@ export const MenuData = [
   },
   {
     name: 'news',
+    langs: ['zh-CN'],
     children: [
       {
         name: 'dynamic',
@@ -682,7 +685,7 @@ export const ContactMapAddr = [
   },
 ];
 
-export const MenuDataOld = [
+export const MenuData = [
   {
     name: 'products',
     children: [
