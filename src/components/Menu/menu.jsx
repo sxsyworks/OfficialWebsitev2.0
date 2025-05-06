@@ -1,6 +1,5 @@
-import { ReactComponent as ArrowDown } from '@/assets/icons/arrow-down.svg';
-import { ReactComponent as Logo } from '@/assets/icons/logo.svg';
-import Phone from '@/assets/icons/phone-white.png';
+import LogoBlue from '@/assets/icons/logoBlue.png';
+import Phone from '@/assets/icons/phoneBlue.png';
 import { LangItems, MenuData } from '@/utils/constant';
 import { Dropdown } from 'antd';
 import { useEffect, useMemo, useState } from 'react';
@@ -17,7 +16,7 @@ export default function Menu() {
     return LangItems.find((item) => item.key === curLang)?.lang;
   }, [curLang]);
 
-  // 重组菜单数据&路由跳转
+  // Reorganize menu data & route navigation
   useEffect(() => {
     if (!curLang) return;
     let { pathname } = location;
@@ -32,7 +31,7 @@ export default function Menu() {
         newTopPath = topPath[curLang];
         newItem = { ...newItem, path: newTopPath };
       }
-      // 需要展示子菜單的才进来
+      // Only include items that need to display submenus
       if (children) {
         const childrenArr = children?.reduce((acc, cur) => {
           let { path } = cur;
@@ -48,7 +47,7 @@ export default function Menu() {
           if (newTopPath && pathname !== newTopPath && pathname === otherPath) {
             history.push(newItem.path);
           }
-          // 需要更新跳转到对应的页面
+          // Update to navigate to the corresponding page
           if (!newTopPath && pathname === otherPath) {
             let url = newPath || '/404';
             history.push(url);
@@ -117,13 +116,13 @@ export default function Menu() {
     setCurrent(name);
   }, [location]);
 
-  // 获取初始化语言
+  // Get initial language
   useEffect(() => {
     const locale = getLocale();
     setCurLang(locale);
   }, []);
 
-  // 切换语言
+  // Switch language
   const handleChangeLang = ({ key }) => {
     setLocale(key);
     setCurLang(key);
@@ -133,16 +132,17 @@ export default function Menu() {
     <div className={styles.menu}>
       <div className={styles.logo}>
         <Link to="/">
-          <Logo />
+          <img src={LogoBlue} alt="logo" className={styles.logoBlue} />
         </Link>
       </div>
-      <div className={styles[formatMessage({ id: 'page.css.menus' })]}>
-        {MenuDataItem}
+      <div className={styles[formatMessage({ id: 'page.css.menus' })]}>{MenuDataItem} </div>
+
+      <div className={styles.extra}>
         <div className={styles.extraItem}>
           <img className={styles.topPhoneIcon} src={Phone} />
-          <span> +86-400-800-2038</span>
+          <span className={styles.phoneNum}> +86-400-800-2038</span>
         </div>
-        <div className={styles.extraItem}>
+        <div className={styles.extraItem2}>
           <Dropdown
             menu={{ items: LangItems, onClick: handleChangeLang, selectedKeys: [curLang] }}
             autoAdjustOverflow
@@ -151,9 +151,6 @@ export default function Menu() {
             <a onClick={(e) => e.preventDefault()} className={styles.locale}>
               <i className={styles.localIcon}></i>
               {lang}
-              <i className={styles.arrow}>
-                <ArrowDown />
-              </i>
             </a>
           </Dropdown>
         </div>

@@ -1,21 +1,28 @@
 .menu {
-  position: absolute;
-  top: -20vh;
+  position: fixed; /* Changed from absolute to fixed */
+  top: 0; /* Stick to the top */
   width: 100vw;
   box-sizing: border-box;
-  padding: 3vh 1vw 0;
+  padding: 2vh 1vw;
   z-index: 99;
   display: flex;
   justify-content: space-between;
-  color: #fff;
+  color: black;
+  background-color: #f8fbff;
+  border-bottom: 2px solid #2773ff;
   :global {
     animation: menuShowing 1s linear forwards;
     -webkit-animation: menuShowing 1s linear forwards;
   }
 
   .logo {
-    font-size: 1vw;
+    font-size: 0.5vw;
     margin-left: 5vw;
+
+    .logoBlue {
+      height: 48px;
+      width: auto;
+    }
   }
 
   .menus {
@@ -46,7 +53,7 @@
             padding: 1.5vh 0;
             a {
               &:hover {
-                color: #51a8de;
+                color: #2773ff;
               }
             }
           }
@@ -54,11 +61,10 @@
       }
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.3);
         .dropMenuBox {
           height: auto;
+          background-color: #f8fbff;
           .dropMenu {
-            background-color: rgba(0, 0, 0, 0.3);
             transition: all 0.8s linear;
             transform: translateY(0);
           }
@@ -71,14 +77,15 @@
     }
 
     .current {
-      color: #51a8de;
+      color: #2773ff;
       .menuTitle {
-        color: #84ebff;
+        color: #2773ff;
       }
       .dropMenu {
+        color: #fff;
         .currentItem {
           a {
-            color: #51a8de;
+            color: #2773ff;
           }
         }
       }
@@ -87,9 +94,13 @@
     .link {
       .menuTitle:hover {
         cursor: pointer;
-        color: #51a8de;
+        color: #2773ff;
       }
     }
+  }
+
+  .extra {
+    display: flex;
 
     .extraItem {
       font-style: normal;
@@ -98,48 +109,62 @@
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
       display: flex;
       align-items: center;
+      color: black;
+
+      .topPhoneIcon {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+      }
+
+      .phoneNum {
+        color: #000;
+      }
+    }
+
+    .extraItem2 {
+      font-style: normal;
+      cursor: pointer;
+      padding: 2vh 1.5vw;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      color: black;
 
       .locale {
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         display: flex;
         align-items: center;
+        color: #000;
         .localIcon {
-          width: 18px;
-          height: 18px;
-          background-image: url('~@/assets/icons/locale.png');
+          width: 20px;
+          height: 20px;
+          background-image: url('~@/assets/icons/language.png');
           background-size: cover;
           margin-right: 0.5rem;
         }
-
-        .arrow {
-          display: inline-block;
-          font-style: normal;
-          cursor: pointer;
-          font-size: 0.9rem;
-          transform: translate(30%, 10%);
-        }
       }
     }
-  }
 
-  .menus-en {
-    .menus();
-    .menuItem {
-      .dropMenuBox {
-        width: max-content;
-        text-align: left;
-        .dropMenu {
-          display: flex;
-          flex-direction: column;
-          padding: 0 1.5vw;
-          .dropMenuItem {
-            padding: 1vh 0;
+    .menus-en {
+      .menus();
+      .menuItem {
+        .dropMenuBox {
+          width: max-content;
+          text-align: left;
+          .dropMenu {
+            display: flex;
+            flex-direction: column;
+            padding: 0 1.5vw;
+            .dropMenuItem {
+              padding: 1vh 0;
+            }
           }
         }
-      }
-      &:first-child {
-        .dropMenuBox {
-          width: 200%;
+        &:first-child {
+          .dropMenuBox {
+            width: 200%;
+          }
         }
       }
     }
@@ -150,7 +175,7 @@
   .ant-dropdown .ant-dropdown-menu {
     border-radius: 5px;
     .ant-dropdown-menu-item-selected {
-      color: #51a8de;
+      color: #2773ff;
     }
   }
 }
