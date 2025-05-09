@@ -17,6 +17,26 @@
   font-family: Noto Sans SC-Bold;
   src: url('./font/NotoSansSC-Bold.otf');
 } */
+ 
+@font-face {
+  font-family: 'OPPOSans';
+  src: url('/fonts/OPPOSans4.0EN.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OPPOSans';
+  src: url('/fonts/OPPOSans4.0EN.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OPPOSans';
+  src: url('/fonts/OPPOSans4.0EN.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
 
 /* 中文 */
 @font-face {

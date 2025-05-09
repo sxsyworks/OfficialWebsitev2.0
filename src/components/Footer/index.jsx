@@ -61,9 +61,11 @@ const Footer = () => {
           <div className="title">
             <FormattedMessage id={'contact.' + key} />
           </div>
-          <a href={`mailto:${business[key]}`} className="linkText">
-            {business[key]}
-          </a>
+          <div>
+            <a href={`mailto:${business[key]}`} className="linkText">
+              {business[key]}
+            </a>
+          </div>
         </div>,
       );
     });
