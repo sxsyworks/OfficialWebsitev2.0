@@ -8,6 +8,7 @@ import styles from './index.less';
 
 export default function Menu() {
   const { formatMessage } = useIntl();
+  const { locale } = useIntl();
   const location = useLocation();
   const [current, setCurrent] = useState(['']);
   const [curLang, setCurLang] = useState('');
@@ -190,7 +191,7 @@ export default function Menu() {
 
                   if (hoveredMenu?.name === 'products') {
                     if (idx === 0) {
-                      history.push('/');
+                      history.push('/contact');
                     }
                   } else {
                     if (child?.path) {
@@ -210,32 +211,47 @@ export default function Menu() {
             ))}
           </div>
 
-          {/* submenuRight panels */}
           {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
             <div className={styles.submenuRight}>
               <div className={styles.submenuRightTop}>
-                <div className={styles.submenuRightTopLeft}>测序平台</div>
-                <div className={styles.submenuRightTopRight1}>
+                <div className={styles.submenuRightTopLeft}>
+                  {locale === 'zh-CN' ? '测序平台' : 'Nanopore Sequencer'}
+                </div>
+                <div
+                  className={`${styles.submenuRightTopRight1} ${
+                    locale === 'en-US' ? styles.submenuRightTopRight1En : ''
+                  }`}
+                >
                   <a href="">QNome</a>
                   <a href="">QPursue</a>
                 </div>
               </div>
               <div className={styles.submenuRightTop}>
-                <div className={styles.submenuRightTopLeft}>配套试剂/芯片</div>
+                <div className={styles.submenuRightTopLeft}>
+                  {locale === 'zh-CN' ? '配套试剂/芯片' : 'Supporting Reagent / Flow cell'}
+                </div>
                 <div className={styles.submenuRightTopRight}>
-                  <a href="">建库试剂盒</a>
-                  <a href="">极速建库试剂盒</a>
-                  <a href="">极速条形码建库试剂盒</a>
-                  <a href="">直接条形码建库试剂盒</a>
-                  <a href="">测序试剂盒</a>
-                  <a href="">清洗试剂盒</a>
+                  <a href="">{locale === 'zh-CN' ? '建库试剂盒' : 'DNA Library prep kit'}</a>
+                  <a href="">{locale === 'zh-CN' ? '极速建库试剂盒' : 'Ultra-fast DNA Library Prep Kit'}</a>
+                  <a href="">
+                    {locale === 'zh-CN' ? '极速条形码建库试剂盒' : 'Ultra-fast Barcoding Library Prep Kit-8'}
+                  </a>
+                  <a href="">{locale === 'zh-CN' ? '直接条形码建库试剂盒' : 'Ligation Native Barcoding Kit'}</a>
+                  <a href="">{locale === 'zh-CN' ? '测序试剂盒' : 'DNA Sequencing kits'}</a>
+                  <a href="">{locale === 'zh-CN' ? '清洗试剂盒' : 'Wash kit'}</a>
                   <a href="">QCell-384</a>
                   <a href="">QCell-6k</a>
                 </div>
               </div>
               <div className={styles.submenuRightBottom}>
-                <div className={styles.submenuRightBottomLeft}>测序软件</div>
-                <div className={styles.submenuRightBottomRight}>
+                <div className={styles.submenuRightBottomLeft}>
+                  {locale === 'zh-CN' ? '测序软件' : 'Sequencing Software'}
+                </div>
+                <div
+                  className={`${styles.submenuRightBottomRight} ${
+                    locale === 'en-US' ? styles.submenuRightBottomRightEn : ''
+                  }`}
+                >
                   <a href="">QPreasy</a>
                 </div>
               </div>
@@ -245,7 +261,9 @@ export default function Menu() {
           {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 2 && (
             <div className={styles.submenuRight}>
               <div className={styles.submenuRightTop}>
-                <div className={styles.submenuRightTopLeft}>自动化工作站</div>
+                <div className={styles.submenuRightTopLeft}>
+                  {locale === 'zh-CN' ? '自动化工作站' : 'Sequencing Auto-Library Prep Workstation'}
+                </div>
                 <div className={styles.submenuRightTopRight}>
                   <a href="">QPrenano-32</a>
                   <a href="">QPrenano-100</a>
@@ -253,8 +271,14 @@ export default function Menu() {
                 </div>
               </div>
               <div className={styles.submenuRightBottom}>
-                <div className={styles.submenuRightBottomLeft}>配套仪器</div>
-                <div className={styles.submenuRightBottomRight}>
+                <div className={styles.submenuRightBottomLeft}>
+                  {locale === 'zh-CN' ? '配套仪器' : 'Supporting Instrument'}
+                </div>
+                <div
+                  className={`${styles.submenuRightBottomRight} ${
+                    locale === 'en-US' ? styles.submenuRightBottomRight2En : ''
+                  }`}
+                >
                   <a href="">QFluo-200</a>
                   <a href="">QBioprep-6</a>
                 </div>
@@ -266,16 +290,35 @@ export default function Menu() {
             <div className={styles.submenuRight}>
               <div className={styles.submenuRightBottom}>
                 <div className={styles.submenuRightBottomRight1}>
-                  <a href="">宏基因组测序</a>
-                  <a href="">多重呼吸道病原体核酸检测</a>
-                  <a href="">单病原基因组靶向测序</a>
-                  <a href="">分枝杆菌分型及耐药检测</a>
-                  <a href="">超灵敏度新型冠状病毒全基因组捕获</a>
-                  <a href="">全质粒测序</a>
-                  <a href="">全长 HLA 分型</a>
-                  <a href="">全长转录组测序</a>
-                  <a href="">全长线粒体测序</a>
-                  <a href="">65 位点 STR</a>
+                  {locale === 'zh-CN' ? (
+                    <>
+                      <a href="">宏基因组测序配套仪器</a>
+                      <a href="">多重呼吸道病原体核酸检测配套仪器</a>
+                      <a href="">单病原基因组靶向测序配套仪器</a>
+                      <a href="">分枝杆菌分型及耐药检测配套仪器</a>
+                      <a href="">超灵敏度新型冠状病毒全基因组捕获配套仪器</a>
+                      <a href="">全质粒测序配套仪器</a>
+                      <a href="">全长 HLA 分型配套仪器</a>
+                      <a href="">全长转录组测序配套仪器</a>
+                      <a href="">全长线粒体测序配套仪器</a>
+                      <a href="">65 位点 STR 配套仪器</a>
+                    </>
+                  ) : (
+                    <>
+                      <a href="">QPathNano Nanopore Metagenomic Sequencing Solution</a>
+                      <a href="">QPathNano Multiplex Respiratory Pathogen Nucleic Acid Detection Solution</a>
+                      <a href="">Nanopore Single Pathogen Targeted Sequencing Solutions</a>
+                      <a href="">QPathNano Mycobacterial typing and drug resistance testing solutions</a>
+                      <a href="">
+                        QPathNano ultra-sensitive SARS-CoV-2 whole genome capture and nanopore sequencing solution
+                      </a>
+                      <a href="">Nanopore Whole Plasmid Sequencing Total Solution</a>
+                      <a href="">Full-length HLA typing solution</a>
+                      <a href="">Full-length transcriptome library preparation kit</a>
+                      <a href="">Full-Length Mitochondrial DNA Nanopore Sequencing Solution</a>
+                      <a href="">Short Tandem Repeats Nanopore Sequencing Solution</a>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

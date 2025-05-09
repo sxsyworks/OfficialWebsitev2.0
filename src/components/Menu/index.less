@@ -3,6 +3,7 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
+  z-index: 100;
 }
 
 .menu {
@@ -44,6 +45,8 @@
       cursor: pointer;
       padding: 2vh 1.5vw;
       position: relative;
+      font-family: 'OPPOSans', sans-serif;
+      font-weight: 400;
 
       a {
         color: #000;
@@ -78,12 +81,12 @@
 
     .extraItem,
     .extraItem2 {
+      font-family: 'OPPOSans', sans-serif;
       font-style: normal;
       cursor: pointer;
       padding: 2vh 1.5vw;
       display: flex;
       align-items: center;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
       color: black;
     }
 
@@ -133,6 +136,7 @@
     align-items: center;
     padding: 3rem 2rem;
     gap: 1rem;
+    font-family: 'OPPOSans', sans-serif;
   }
 
   .alignEnd {
@@ -145,11 +149,13 @@
     width: 60%;
     gap: 0.5rem;
     border-left: 1px solid #2773ff;
+    font-family: 'OPPOSans', sans-serif;
 
     a {
       &:hover {
-        text-underline-offset: 1px solid #2773ff;
         text-decoration: underline;
+        text-decoration-color: #2773ff;
+        text-underline-offset: 4px;
         cursor: pointer;
         font-weight: 600;
       }
@@ -210,6 +216,24 @@
         }
       }
     }
+
+    .submenuRightTopRight1En {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 2rem 1rem 6.6rem;
+      gap: 1rem;
+
+      a {
+        color: #335697;
+
+        &:hover {
+          color: #2773ff;
+          cursor: pointer;
+          font-weight: 600;
+        }
+      }
+    }
+
     .submenuRightTopRight {
       display: flex;
       flex-direction: column;
@@ -246,6 +270,40 @@
       display: flex;
       flex-direction: column;
       padding: 1rem 2rem 1rem 4.2rem;
+      gap: 1rem;
+
+      a {
+        color: #335697;
+
+        &:hover {
+          color: #2773ff;
+          cursor: pointer;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .submenuRightBottomRightEn {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 2rem 1rem 6.6rem;
+      gap: 1rem;
+
+      a {
+        color: #335697;
+
+        &:hover {
+          color: #2773ff;
+          cursor: pointer;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .submenuRightBottomRight2En {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 2rem 1rem 11.5rem;
       gap: 1rem;
 
       a {
