@@ -72,28 +72,26 @@ export default function Menu() {
   }, [curLang, MenuDataNew, location]);
 
   const MenuDataItem = useMemo(() => {
-    return data?.map((item, index) => {
-      return (
-        <div
-          className={`${styles.menuItem} ${current[0] === item.name ? styles.current : ''} ${
-            item.path ? styles.link : ''
-          }`}
-          key={index}
-          onMouseEnter={() => handleMenuHover(item)}
-          onMouseLeave={handleMenuLeave}
-        >
-          {item.path ? (
-            <Link className={styles.menuTitle} key={index} to={item.path}>
-              <FormattedMessage id={'menu.' + item.name} />
-            </Link>
-          ) : (
-            <div className={styles.menuTitle} key={index}>
-              <FormattedMessage id={'menu.' + item.name} />
-            </div>
-          )}
-        </div>
-      );
-    });
+    return data?.map((item, index) => (
+      <div
+        className={`${styles.menuItem} ${current[0] === item.name ? styles.current : ''} ${
+          item.path ? styles.link : ''
+        }`}
+        key={index}
+        onMouseEnter={() => handleMenuHover(item)}
+        onMouseLeave={handleMenuLeave}
+      >
+        {item.path ? (
+          <Link className={styles.menuTitle} key={index} to={item.path}>
+            <FormattedMessage id={'menu.' + item.name} />
+          </Link>
+        ) : (
+          <div className={styles.menuTitle} key={index}>
+            <FormattedMessage id={'menu.' + item.name} />
+          </div>
+        )}
+      </div>
+    ));
   }, [data, current]);
 
   useEffect(() => {
@@ -114,13 +112,13 @@ export default function Menu() {
 
   const handleMenuHover = (item) => {
     setHoveredMenu(item);
-    setClickedSubmenuIndex(null); // reset on hover of new menu
+    setClickedSubmenuIndex(null);
   };
 
   const handleMenuLeave = () => {
     if (!isSubmenuHovered) {
       setHoveredMenu(null);
-      setClickedSubmenuIndex(null); // reset on leave
+      setClickedSubmenuIndex(null);
     }
   };
 
@@ -131,11 +129,11 @@ export default function Menu() {
   const handleSubmenuLeave = () => {
     setIsSubmenuHovered(false);
     setHoveredMenu(null);
-    setClickedSubmenuIndex(null); // reset when leaving submenu
+    setClickedSubmenuIndex(null);
   };
 
   const handleSubmenuClick = (idx) => {
-    setClickedSubmenuIndex(idx === clickedSubmenuIndex ? null : idx);
+    setClickedSubmenuIndex((prev) => (prev === idx ? null : idx));
   };
 
   return (
@@ -176,16 +174,32 @@ export default function Menu() {
 
       {hoveredMenu && hoveredMenu.children?.length > 0 && (
         <div className={styles.submenuContainer} onMouseEnter={handleSubmenuEnter} onMouseLeave={handleSubmenuLeave}>
-          <div className={styles.submenuInner}>
+          <div
+            className={`${styles.submenuInner} ${
+              hoveredMenu?.name === 'products' && clickedSubmenuIndex >= 1 ? styles.alignEnd : ''
+            }`}
+          >
             {hoveredMenu.children.map((child, idx) => (
               <div
-                className={styles.submenuItem}
+                className={`${styles.submenuItem} ${clickedSubmenuIndex === idx ? styles.active : ''}`}
                 key={idx}
                 onMouseEnter={() => setHoveredSubmenuIndex(idx)}
                 onMouseLeave={() => setHoveredSubmenuIndex(null)}
                 onClick={() => {
-                  if (hoveredMenu?.name === 'products' && idx === 1) {
-                    handleSubmenuClick(idx);
+                  handleSubmenuClick(idx);
+
+                  if (hoveredMenu?.name === 'products') {
+                    if (idx === 0) {
+                      history.push('/');
+                    }
+                  } else {
+                    if (child?.path) {
+                      if (typeof child.path === 'string') {
+                        history.push(child.path);
+                      } else if (typeof child.path === 'object' && child.path[curLang]) {
+                        history.push(child.path[curLang]);
+                      }
+                    }
                   }
                 }}
               >
@@ -196,19 +210,19 @@ export default function Menu() {
             ))}
           </div>
 
+          {/* submenuRight panels */}
           {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
             <div className={styles.submenuRight}>
               <div className={styles.submenuRightTop}>
                 <div className={styles.submenuRightTopLeft}>测序平台</div>
-
-                <div className={styles.submenuRightTopRight}>
+                <div className={styles.submenuRightTopRight1}>
                   <a href="">QNome</a>
                   <a href="">QPursue</a>
                 </div>
               </div>
-              <div className={styles.submenuRightBottom}>
-                <div className={styles.submenuRightBottomLeft}>配套试剂/芯片</div>
-                <div className={styles.submenuRightBottomRight}>
+              <div className={styles.submenuRightTop}>
+                <div className={styles.submenuRightTopLeft}>配套试剂/芯片</div>
+                <div className={styles.submenuRightTopRight}>
                   <a href="">建库试剂盒</a>
                   <a href="">极速建库试剂盒</a>
                   <a href="">极速条形码建库试剂盒</a>
@@ -217,6 +231,51 @@ export default function Menu() {
                   <a href="">清洗试剂盒</a>
                   <a href="">QCell-384</a>
                   <a href="">QCell-6k</a>
+                </div>
+              </div>
+              <div className={styles.submenuRightBottom}>
+                <div className={styles.submenuRightBottomLeft}>测序软件</div>
+                <div className={styles.submenuRightBottomRight}>
+                  <a href="">QPreasy</a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 2 && (
+            <div className={styles.submenuRight}>
+              <div className={styles.submenuRightTop}>
+                <div className={styles.submenuRightTopLeft}>自动化工作站</div>
+                <div className={styles.submenuRightTopRight}>
+                  <a href="">QPrenano-32</a>
+                  <a href="">QPrenano-100</a>
+                  <a href="">QApure-mini</a>
+                </div>
+              </div>
+              <div className={styles.submenuRightBottom}>
+                <div className={styles.submenuRightBottomLeft}>配套仪器</div>
+                <div className={styles.submenuRightBottomRight}>
+                  <a href="">QFluo-200</a>
+                  <a href="">QBioprep-6</a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 3 && (
+            <div className={styles.submenuRight}>
+              <div className={styles.submenuRightBottom}>
+                <div className={styles.submenuRightBottomRight1}>
+                  <a href="">宏基因组测序</a>
+                  <a href="">多重呼吸道病原体核酸检测</a>
+                  <a href="">单病原基因组靶向测序</a>
+                  <a href="">分枝杆菌分型及耐药检测</a>
+                  <a href="">超灵敏度新型冠状病毒全基因组捕获</a>
+                  <a href="">全质粒测序</a>
+                  <a href="">全长 HLA 分型</a>
+                  <a href="">全长转录组测序</a>
+                  <a href="">全长线粒体测序</a>
+                  <a href="">65 位点 STR</a>
                 </div>
               </div>
             </div>
