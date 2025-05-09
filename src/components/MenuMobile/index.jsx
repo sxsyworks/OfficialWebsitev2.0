@@ -151,10 +151,10 @@ const Menu = () => {
           <Logo />
         </Link>
         <div className={styles.menuIcon}>
+          <MenuIcon onClick={triggerMenu} />
           <Dropdown menu={{ items: LangItems, onClick: handleChangeLang, selectedKeys: [curLang] }} placement="bottom">
             <i className={styles.localIcon}></i>
           </Dropdown>
-          <MenuIcon onClick={triggerMenu} />
         </div>
       </div>
       <div className={styles.menuData}>{MenuDataItem}</div>

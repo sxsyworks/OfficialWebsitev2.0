@@ -10,7 +10,7 @@ const Footer = () => {
   const { initialState } = useModel('@@initialState');
   const { isPhone } = initialState;
   const location = useLocation();
-  const { formatMessage, locale } = useIntl();
+  const { locale } = useIntl();
   const [data, setData] = useState([]);
   const business = {
     business: 'business@qitantech.com',
@@ -61,72 +61,38 @@ const Footer = () => {
           <div className="title">
             <FormattedMessage id={'contact.' + key} />
           </div>
-          <div className="linkText">{business[key]}</div>
+          <a href={`mailto:${business[key]}`} className="linkText">
+            {business[key]}
+          </a>
         </div>,
       );
     });
     return dom;
   }, []);
 
-  const links = useMemo(() => {
-    return data.map((item, index) => {
-      if (!item.hideInFooter) {
-        return (
-          <div key={item.name} className="footerLinks">
-            {item.path ? (
-              <Link to={item.path}>
-                <FormattedMessage id={'menu.' + item.name} />
-              </Link>
-            ) : (
-              <div>
-                <FormattedMessage id={'menu.' + item.name} />
-              </div>
-            )}
-            <ul className="footerLinkList">
-              {item.children &&
-                item.children.map((child) => {
-                  return (
-                    <li key={index + '_' + child.name} className="linkText">
-                      <a href={child.path} target={child.target || '_parent'} rel="noopener noreferrer">
-                        <FormattedMessage id={'menu.' + child.name} />
-                      </a>
-                    </li>
-                  );
-                })}
-            </ul>
-          </div>
-        );
-      }
-    });
-  }, [data]);
-
   return (
     <div className={`footer ${isPhone ? 'mobileFooter' : ''}`} id="footer">
       <div className="topBox">
-        <div className="leftBox">
-          {isPhone && (
-            <div className="phoneContact">
-              <p className="text1">联系我们</p>
-              <p className="text2">Contact us</p>
-            </div>
-          )}
+        {isPhone && (
+          <div className="phoneContact">
+            <p className="text1">联系我们</p>
+            <p className="text2">Contact us</p>
+          </div>
+        )}
 
-          {!isPhone && (
-            <div>
-              <Link to="/">
-                <img
-                  src={require('@/assets/icons/logoWhite.png')}
-                  alt="齐碳科技logo"
-                  className="seoLogo"
-                  title="齐碳科技"
-                />
-              </Link>
-            </div>
-          )}
-          <div className="cooperation">{businessDom}</div>
-        </div>
-
-        {!isPhone && <div className="footerMenu">{links}</div>}
+        {!isPhone && (
+          <div className="logoBox">
+            <Link to="/">
+              <img
+                src={require('@/assets/icons/logoWhite.png')}
+                alt="齐碳科技logo"
+                className="seoLogo"
+                title="齐碳科技"
+              />
+            </Link>
+          </div>
+        )}
+        <div className="cooperation">{businessDom}</div>
       </div>
       <div className="bottomBox">
         <div className="rowBox">

@@ -15,7 +15,7 @@ export default function Menu() {
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [isSubmenuHovered, setIsSubmenuHovered] = useState(false);
   const [hoveredSubmenuIndex, setHoveredSubmenuIndex] = useState(null);
-  const [clickedSubmenuIndex, setClickedSubmenuIndex] = useState(null); // NEW STATE
+  const [clickedSubmenuIndex, setClickedSubmenuIndex] = useState(null);
 
   const lang = useMemo(() => {
     return LangItems.find((item) => item.key === curLang)?.lang;
@@ -158,6 +158,7 @@ export default function Menu() {
             <img className={styles.topPhoneIcon} src={Phone} />
             <span className={styles.phoneNum}> +86-400-800-2038</span>
           </div>
+
           <div className={styles.extraItem2}>
             <Dropdown
               menu={{ items: LangItems, onClick: handleChangeLang, selectedKeys: [curLang] }}
@@ -195,23 +196,18 @@ export default function Menu() {
             ))}
           </div>
 
-          <div className={styles.submenuRight}>
-            <div className={styles.submenuRightTop}>
-              {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
+          {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
+            <div className={styles.submenuRight}>
+              <div className={styles.submenuRightTop}>
                 <div className={styles.submenuRightTopLeft}>测序平台</div>
-              )}
-              {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
+
                 <div className={styles.submenuRightTopRight}>
                   <a href="">QNome</a>
                   <a href="">QPursue</a>
                 </div>
-              )}
-            </div>
-            <div className={styles.submenuRightBottom}>
-              {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
+              </div>
+              <div className={styles.submenuRightBottom}>
                 <div className={styles.submenuRightBottomLeft}>配套试剂/芯片</div>
-              )}
-              {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
                 <div className={styles.submenuRightBottomRight}>
                   <a href="">建库试剂盒</a>
                   <a href="">极速建库试剂盒</a>
@@ -222,9 +218,9 @@ export default function Menu() {
                   <a href="">QCell-384</a>
                   <a href="">QCell-6k</a>
                 </div>
-              )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </div>

@@ -16,7 +16,7 @@
   justify-content: space-between;
   color: black;
   background-color: #f8fbff;
-  border-bottom: 2px solid #2773ff;
+  border-bottom: 1px solid #2773ff;
 
   :global {
     animation: menuShowing 1s linear forwards;
@@ -44,7 +44,6 @@
       cursor: pointer;
       padding: 2vh 1.5vw;
       position: relative;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 
       a {
         color: #000;
@@ -118,7 +117,7 @@
   left: 0;
   width: 100vw;
   background: rgba(255, 255, 255, 0.8);
-  //backdrop-filter: blur(4px);
+  //backdrop-filter: blur(1px);
   z-index: 98;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
   animation: submenuFadeDown 0.5s ease-out forwards;
@@ -128,10 +127,10 @@
     justify-content: flex-start;
     width: 40%;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     padding: 3rem 2rem;
     gap: 1rem;
-    border-right: 2px solid #2773ff;
+
     text-align: right;
   }
 
@@ -141,6 +140,7 @@
     width: 60%;
     padding: 0 0 2rem 0;
     gap: 0.5rem;
+    border-left: 1px solid #2773ff;
   }
 
   .submenuItem {
@@ -162,7 +162,7 @@
   .submenuRightTop {
     display: flex;
     gap: 1rem;
-    border-bottom: 2px solid #2773ff;
+    border-bottom: 1px solid #2773ff;
     padding: 1rem 0 1rem 0;
 
     .submenuRightTopLeft {
