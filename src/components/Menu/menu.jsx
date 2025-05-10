@@ -14,12 +14,10 @@ export default function Menu() {
   const [data, setData] = useState([]);
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [hoveredSubmenuIndex, setHoveredSubmenuIndex] = useState(null);
-  const [isSubmenuHovered, setIsSubmenuHovered] = useState(false);
   const [isMenuHovered, setIsMenuHovered] = useState(false);
+  const [isSubmenuHovered, setIsSubmenuHovered] = useState(false);
 
-  const lang = useMemo(() => {
-    return LangItems.find((item) => item.key === curLang)?.lang;
-  }, [curLang]);
+  const lang = useMemo(() => LangItems.find((item) => item.key === curLang)?.lang, [curLang]);
 
   useEffect(() => {
     if (!curLang) return;
@@ -39,7 +37,7 @@ export default function Menu() {
       }
 
       if (children) {
-        const childrenArr = children?.reduce((acc, cur) => {
+        const childrenArr = children.reduce((acc, cur) => {
           let { path } = cur;
           let newPath = path;
           let otherPath;
@@ -56,8 +54,7 @@ export default function Menu() {
             history.push(newItem.path);
           }
           if (!newTopPath && pathname === otherPath) {
-            let url = newPath || '/404';
-            history.push(url);
+            history.push(newPath || '/404');
           }
           newPath && acc.push({ ...cur, path: newPath });
           return acc;
@@ -70,31 +67,6 @@ export default function Menu() {
 
     setData(arr);
   }, [curLang, MenuDataNew, location]);
-
-  const MenuDataItem = useMemo(() => {
-    return data?.map((item, index) => (
-      <div
-        className={`${styles.menuItem} ${current[0] === item.name ? styles.current : ''} ${
-          item.path ? styles.link : ''
-        }`}
-        key={index}
-        onMouseEnter={() => {
-          setHoveredMenu(item);
-          setHoveredSubmenuIndex(null);
-        }}
-      >
-        {item.path ? (
-          <Link className={styles.menuTitle} key={index} to={item.path}>
-            <FormattedMessage id={'menu.' + item.name} />
-          </Link>
-        ) : (
-          <div className={styles.menuTitle} key={index}>
-            <FormattedMessage id={'menu.' + item.name} />
-          </div>
-        )}
-      </div>
-    ));
-  }, [data, current]);
 
   useEffect(() => {
     let name = location.pathname.split('/');
@@ -112,32 +84,19 @@ export default function Menu() {
     setCurLang(key);
   };
 
-  const handleSubmenuEnter = () => {
-    setIsSubmenuHovered(true);
-  };
-
-  const handleSubmenuLeave = () => {
-    setIsSubmenuHovered(false);
-    setTimeout(() => {
-      if (!isMenuHovered) {
-        setHoveredMenu(null);
-        setHoveredSubmenuIndex(null);
-      }
-    }, 100);
-  };
-
-  const handleMenuLeave = () => {
-    setIsMenuHovered(false);
-    setTimeout(() => {
-      if (!isSubmenuHovered) {
-        setHoveredMenu(null);
-        setHoveredSubmenuIndex(null);
-      }
-    }, 100);
-  };
+  useEffect(() => {
+    if (!isMenuHovered && !isSubmenuHovered) {
+      setHoveredMenu(null);
+      setHoveredSubmenuIndex(null);
+    }
+  }, [isMenuHovered, isSubmenuHovered]);
 
   return (
-    <div className={styles.menuWrapper} onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={handleMenuLeave}>
+    <div
+      className={styles.menuWrapper}
+      onMouseEnter={() => setIsMenuHovered(true)}
+      onMouseLeave={() => setIsMenuHovered(false)}
+    >
       <div className={styles.menu}>
         <div className={styles.logo}>
           <Link to="/">
@@ -145,7 +104,30 @@ export default function Menu() {
           </Link>
         </div>
 
-        <div className={styles[formatMessage({ id: 'page.css.menus' })]}>{MenuDataItem}</div>
+        <div className={styles[formatMessage({ id: 'page.css.menus' })]}>
+          {data.map((item, index) => (
+            <div
+              className={`${styles.menuItem} ${current[0] === item.name ? styles.current : ''} ${
+                item.path ? styles.link : ''
+              }`}
+              key={index}
+              onMouseEnter={() => {
+                setHoveredMenu(item);
+                setHoveredSubmenuIndex(null);
+              }}
+            >
+              {item.path ? (
+                <Link className={styles.menuTitle} to={item.path}>
+                  <FormattedMessage id={'menu.' + item.name} />
+                </Link>
+              ) : (
+                <div className={styles.menuTitle}>
+                  <FormattedMessage id={'menu.' + item.name} />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
 
         <div className={styles.extra}>
           <div className={styles.extraItem}>
@@ -168,8 +150,12 @@ export default function Menu() {
         </div>
       </div>
 
-      {hoveredMenu && hoveredMenu.children?.length > 0 && (
-        <div className={styles.submenuContainer} onMouseEnter={handleSubmenuEnter} onMouseLeave={handleSubmenuLeave}>
+      {hoveredMenu?.children?.length > 0 && (
+        <div
+          className={styles.submenuContainer}
+          onMouseEnter={() => setIsSubmenuHovered(true)}
+          onMouseLeave={() => setIsSubmenuHovered(false)}
+        >
           <div
             className={`${styles.submenuInner} ${
               hoveredMenu?.name === 'products' && hoveredSubmenuIndex >= 1
@@ -195,21 +181,17 @@ export default function Menu() {
           >
             {hoveredMenu.children.map((child, idx) => (
               <div
-                className={`${styles.submenuItem} ${hoveredSubmenuIndex === idx ? styles.active : ''}`}
                 key={idx}
+                className={`${styles.submenuItem} ${hoveredSubmenuIndex === idx ? styles.active : ''}`}
                 onMouseEnter={() => setHoveredSubmenuIndex(idx)}
                 onClick={() => {
-                  if (hoveredMenu?.name === 'products') {
-                    if (idx === 0) {
-                      history.push('/contact');
-                    }
-                  } else {
-                    if (child?.path) {
-                      if (typeof child.path === 'string') {
-                        history.push(child.path);
-                      } else if (typeof child.path === 'object' && child.path[curLang]) {
-                        history.push(child.path[curLang]);
-                      }
+                  if (hoveredMenu.name === 'products' && idx === 0) {
+                    history.push('/contact');
+                  } else if (child.path) {
+                    if (typeof child.path === 'string') {
+                      history.push(child.path);
+                    } else if (typeof child.path === 'object' && child.path[curLang]) {
+                      history.push(child.path[curLang]);
                     }
                   }
                 }}
