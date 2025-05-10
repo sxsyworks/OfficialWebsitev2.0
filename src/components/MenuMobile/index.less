@@ -8,7 +8,7 @@
   z-index: 99;
   padding: 2rem;
   background: white;
-  color: #fff;
+  color: #525252;
   transition: height 1s;
   overflow-y: hidden;
   .top {
@@ -16,12 +16,17 @@
     justify-content: space-between;
     align-items: center;
     font-size: 0.75rem;
+
+    .logoBlue {
+      height: 2.5rem;
+      width: auto;
+    }
   }
   .menuIcon:active {
-    color: @blue;
+    color: #3078ff;
   }
   .menuIcon {
-    color: #fff;
+    color: #525252;
     display: flex;
     align-items: center;
     .localIcon {
@@ -31,14 +36,20 @@
       background-size: cover;
       margin-left: 1rem;
     }
+    .mobileIcon {
+      .mobileIconImg {
+        width: auto;
+        height: 1.4rem;
+      }
+    }
   }
   .menuData {
     display: grid;
-    padding-top: 1rem;
+    padding-top: 2rem;
     grid-template-columns: repeat(3, 1fr);
     .fw-bold();
     .menuItem {
-      border-right: 1px solid #ffffff90;
+      border-right: 1px solid #525252;
       text-align: center;
       font-size: 1rem;
       margin-bottom: 1.5rem;
@@ -48,11 +59,12 @@
         font-size: 1.3rem;
       }
       .noLink {
-        color: #c8c8c8;
+        color: #525252;
       }
       .menuTitle {
         font-weight: 400;
         padding: 1rem 0 0;
+        color: #525252;
       }
     }
     .menuItem:nth-child(3n) {
@@ -66,13 +78,83 @@
 
 .menuActive {
   height: 34rem;
-  background: linear-gradient(to bottom, rgb(81, 168, 222), rgba(81, 168, 222, 0.8));
+  background: white;
 }
 
 .menuEn {
   .menuData {
     .menuItem .menuTitle {
       padding: 1rem 1.2rem 0;
+    }
+  }
+}
+
+.fullscreenMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: white;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1000;
+  color: #3078ff;
+}
+
+.mobileMenuContent {
+  display: flex;
+  flex: 1;
+  margin-top: 4rem;
+}
+
+.menuLeft {
+  width: 40%;
+  padding: 1rem 2rem;
+  overflow-y: auto;
+
+  .parentItem {
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #525252;
+
+    &:hover,
+    &.active {
+      font-weight: bold;
+      color: #2773ff;
+    }
+  }
+}
+
+.menuRight {
+  width: 60%;
+  padding: 1rem 1rem;
+  overflow-y: auto;
+
+  .childItem {
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #525252;
+
+    a {
+      font-size: 1rem;
+      color: #335697;
+
+      &:hover {
+        color: #2773ff;
+        font-weight: 600;
+      }
     }
   }
 }

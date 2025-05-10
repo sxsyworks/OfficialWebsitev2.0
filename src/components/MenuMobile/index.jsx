@@ -1,6 +1,6 @@
-import { ReactComponent as Logo } from '@/assets/icons/logo.svg';
-import { ReactComponent as MenuIcon } from '@/assets/icons/menu.svg';
-import { LangItems, MenuData } from '@/utils/constant';
+import LogoBlue from '@/assets/icons/logoBlue.png';
+import MobileIcon from '@/assets/icons/menuMobile.png';
+import { LangItems, MenuDataNew } from '@/utils/constant';
 import { Dropdown } from 'antd';
 import { useEffect, useMemo, useState } from 'react';
 import { FormattedMessage, getLocale, history, Link, setLocale, useLocation, useParams } from 'umi';
@@ -9,16 +9,19 @@ import styles from './index.less';
 const Menu = () => {
   const params = useParams();
   const [show, setShow] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeParentIndex, setActiveParentIndex] = useState(null);
   const [current, setCurrent] = useState(['']);
   const [curLang, setCurLang] = useState('');
   const [data, setData] = useState([]);
   const location = useLocation();
 
-  const triggerMenu = () => {
-    setShow(!show);
+  const triggerMenu = () => setIsMobileMenuOpen(true);
+  const closeMenu = () => {
+    setIsMobileMenuOpen(false);
+    setActiveParentIndex(null);
   };
 
-  // 设置当前页面名称
   useEffect(() => {
     let name = location.pathname.split('/');
     name.shift();
@@ -28,24 +31,22 @@ const Menu = () => {
     setCurrent(name);
   }, [location]);
 
-  // 获取初始化语言
   useEffect(() => {
     const locale = getLocale();
     setCurLang(locale);
   }, []);
 
-  // 切换语言
   const handleChangeLang = ({ key }) => {
     setLocale(key);
     setCurLang(key);
   };
-  // 重组菜单数据&路由跳转 TODO
+
   useEffect(() => {
     if (!curLang) return;
     let { pathname } = location;
     let arr = [];
     let otherLang = curLang === 'zh-CN' ? 'en-US' : 'zh-CN';
-    MenuData.map((item) => {
+    MenuDataNew.map((item) => {
       let { children = [], langs = [], path: topPath } = item;
       let newItem = item;
       let isShowItem = !langs.length || langs.includes(curLang);
@@ -66,11 +67,9 @@ const Menu = () => {
             newPath = path[curLang];
             otherPath = path[otherLang];
           }
-          // 正对中文的joinUS->英文的aboutUs
           if (newTopPath && pathname !== newTopPath && pathname === otherPath) {
             history.push(newItem.path);
           }
-          // 对于新闻/换算中心 -> 404 | 切换document页面
           if (!newTopPath && pathname === otherPath) {
             let url = newPath || '/404';
             history.push(url);
@@ -83,7 +82,7 @@ const Menu = () => {
       isShowItem && arr.push(newItem);
     });
     setData(arr);
-  }, [curLang, MenuData, location]);
+  }, [curLang, location]);
 
   const MenuDataItem = useMemo(() => {
     return data.map((item, index) => {
@@ -145,20 +144,69 @@ const Menu = () => {
   }, [show, curLang]);
 
   return (
-    <div className={menuClassName}>
-      <div className={styles.top}>
-        <Link to="/mobile">
-          <Logo />
-        </Link>
-        <div className={styles.menuIcon}>
-          <MenuIcon onClick={triggerMenu} />
-          <Dropdown menu={{ items: LangItems, onClick: handleChangeLang, selectedKeys: [curLang] }} placement="bottom">
-            <i className={styles.localIcon}></i>
-          </Dropdown>
+    <>
+      {!isMobileMenuOpen && (
+        <div className={menuClassName}>
+          <div className={styles.top}>
+            <div className={styles.logo}>
+              <Link to="/">
+                <img src={LogoBlue} alt="logo" className={styles.logoBlue} />
+              </Link>
+            </div>
+            <div className={styles.menuIcon} onClick={triggerMenu}>
+              <div className={styles.mobileIcon}>
+                <img src={MobileIcon} alt="menu" className={styles.mobileIconImg} />
+              </div>
+              <Dropdown
+                menu={{ items: LangItems, onClick: handleChangeLang, selectedKeys: [curLang] }}
+                placement="bottom"
+              >
+                <i className={styles.localIcon}></i>
+              </Dropdown>
+            </div>
+          </div>
+          <div className={styles.menuData}>{MenuDataItem}</div>
         </div>
-      </div>
-      <div className={styles.menuData}>{MenuDataItem}</div>
-    </div>
+      )}
+
+      {isMobileMenuOpen && (
+        <div className={styles.fullscreenMenu}>
+          <div className={styles.closeBtn} onClick={closeMenu}>
+            ×
+          </div>
+          <div className={styles.mobileMenuContent}>
+            <div className={styles.menuLeft}>
+              {data.map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`${styles.parentItem} ${idx === activeParentIndex ? styles.active : ''}`}
+                  onClick={() => setActiveParentIndex(idx)}
+                >
+                  <FormattedMessage id={'menu.' + item.name} />
+                </div>
+              ))}
+            </div>
+            <div className={styles.menuRight}>
+              {activeParentIndex !== null &&
+                data[activeParentIndex]?.children?.map((child, i) => (
+                  <div key={i} className={styles.childItem}>
+                    {child.target ? (
+                      <a href={child.path} target={child.target} rel="noopener noreferrer">
+                        <FormattedMessage id={'menu.' + child.name} />
+                      </a>
+                    ) : (
+                      <Link to={child.path}>
+                        <FormattedMessage id={'menu.' + child.name} />
+                      </Link>
+                    )}
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
+
 export default Menu;

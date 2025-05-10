@@ -7,16 +7,15 @@ import { FormattedMessage, getLocale, history, Link, setLocale, useIntl, useLoca
 import styles from './index.less';
 
 export default function Menu() {
-  const { formatMessage } = useIntl();
-  const { locale } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const location = useLocation();
   const [current, setCurrent] = useState(['']);
   const [curLang, setCurLang] = useState('');
   const [data, setData] = useState([]);
   const [hoveredMenu, setHoveredMenu] = useState(null);
-  const [isSubmenuHovered, setIsSubmenuHovered] = useState(false);
   const [hoveredSubmenuIndex, setHoveredSubmenuIndex] = useState(null);
-  const [clickedSubmenuIndex, setClickedSubmenuIndex] = useState(null);
+  const [isSubmenuHovered, setIsSubmenuHovered] = useState(false);
+  const [isMenuHovered, setIsMenuHovered] = useState(false);
 
   const lang = useMemo(() => {
     return LangItems.find((item) => item.key === curLang)?.lang;
@@ -79,8 +78,10 @@ export default function Menu() {
           item.path ? styles.link : ''
         }`}
         key={index}
-        onMouseEnter={() => handleMenuHover(item)}
-        onMouseLeave={handleMenuLeave}
+        onMouseEnter={() => {
+          setHoveredMenu(item);
+          setHoveredSubmenuIndex(null);
+        }}
       >
         {item.path ? (
           <Link className={styles.menuTitle} key={index} to={item.path}>
@@ -111,38 +112,32 @@ export default function Menu() {
     setCurLang(key);
   };
 
-  const handleMenuHover = (item) => {
-    setHoveredMenu(item);
-    setClickedSubmenuIndex(null);
-  };
-
-  const handleMenuLeave = () => {
-    if (!isSubmenuHovered) {
-      setHoveredMenu(null);
-      setClickedSubmenuIndex(null);
-    }
-  };
-
   const handleSubmenuEnter = () => {
     setIsSubmenuHovered(true);
   };
 
   const handleSubmenuLeave = () => {
     setIsSubmenuHovered(false);
-    setHoveredMenu(null);
-    setClickedSubmenuIndex(null);
+    setTimeout(() => {
+      if (!isMenuHovered) {
+        setHoveredMenu(null);
+        setHoveredSubmenuIndex(null);
+      }
+    }, 100);
   };
 
-  const handleSubmenuClick = (idx) => {
-    setClickedSubmenuIndex((prev) => (prev === idx ? null : idx));
+  const handleMenuLeave = () => {
+    setIsMenuHovered(false);
+    setTimeout(() => {
+      if (!isSubmenuHovered) {
+        setHoveredMenu(null);
+        setHoveredSubmenuIndex(null);
+      }
+    }, 100);
   };
 
   return (
-    <div
-      className={styles.menuWrapper}
-      onMouseEnter={() => setIsSubmenuHovered(true)}
-      onMouseLeave={() => setIsSubmenuHovered(false)}
-    >
+    <div className={styles.menuWrapper} onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={handleMenuLeave}>
       <div className={styles.menu}>
         <div className={styles.logo}>
           <Link to="/">
@@ -177,18 +172,33 @@ export default function Menu() {
         <div className={styles.submenuContainer} onMouseEnter={handleSubmenuEnter} onMouseLeave={handleSubmenuLeave}>
           <div
             className={`${styles.submenuInner} ${
-              hoveredMenu?.name === 'products' && clickedSubmenuIndex >= 1 ? styles.alignEnd : ''
+              hoveredMenu?.name === 'products' && hoveredSubmenuIndex >= 1
+                ? `${styles.alignEnd} ${locale === 'en-US' ? styles.langEn : styles.langZh}`
+                : ''
             }`}
+            style={{
+              marginLeft:
+                hoveredMenu?.name === 'products'
+                  ? locale === 'zh-CN'
+                    ? '1.6rem'
+                    : '4rem'
+                  : hoveredMenu?.name === 'support'
+                  ? locale === 'zh-CN'
+                    ? '18.2rem'
+                    : '21rem'
+                  : hoveredMenu?.name === 'news'
+                  ? '35rem'
+                  : hoveredMenu?.name === 'about'
+                  ? '51rem'
+                  : '0px',
+            }}
           >
             {hoveredMenu.children.map((child, idx) => (
               <div
-                className={`${styles.submenuItem} ${clickedSubmenuIndex === idx ? styles.active : ''}`}
+                className={`${styles.submenuItem} ${hoveredSubmenuIndex === idx ? styles.active : ''}`}
                 key={idx}
                 onMouseEnter={() => setHoveredSubmenuIndex(idx)}
-                onMouseLeave={() => setHoveredSubmenuIndex(null)}
                 onClick={() => {
-                  handleSubmenuClick(idx);
-
                   if (hoveredMenu?.name === 'products') {
                     if (idx === 0) {
                       history.push('/contact');
@@ -211,7 +221,7 @@ export default function Menu() {
             ))}
           </div>
 
-          {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 1 && (
+          {hoveredMenu?.name === 'products' && hoveredSubmenuIndex === 1 && (
             <div className={styles.submenuRight}>
               <div className={styles.submenuRightTop}>
                 <div className={styles.submenuRightTopLeft}>
@@ -226,6 +236,7 @@ export default function Menu() {
                   <a href="">QPursue</a>
                 </div>
               </div>
+
               <div className={styles.submenuRightTop}>
                 <div className={styles.submenuRightTopLeft}>
                   {locale === 'zh-CN' ? '配套试剂/芯片' : 'Supporting Reagent / Flow cell'}
@@ -243,6 +254,7 @@ export default function Menu() {
                   <a href="">QCell-6k</a>
                 </div>
               </div>
+
               <div className={styles.submenuRightBottom}>
                 <div className={styles.submenuRightBottomLeft}>
                   {locale === 'zh-CN' ? '测序软件' : 'Sequencing Software'}
@@ -258,7 +270,7 @@ export default function Menu() {
             </div>
           )}
 
-          {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 2 && (
+          {hoveredMenu?.name === 'products' && hoveredSubmenuIndex === 2 && (
             <div className={styles.submenuRight}>
               <div className={styles.submenuRightTop}>
                 <div className={styles.submenuRightTopLeft}>
@@ -286,7 +298,7 @@ export default function Menu() {
             </div>
           )}
 
-          {hoveredMenu?.name === 'products' && clickedSubmenuIndex === 3 && (
+          {hoveredMenu?.name === 'products' && hoveredSubmenuIndex === 3 && (
             <div className={styles.submenuRight}>
               <div className={styles.submenuRightBottom}>
                 <div className={styles.submenuRightBottomRight1}>
