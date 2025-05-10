@@ -11,6 +11,7 @@
   color: #525252;
   transition: height 1s;
   overflow-y: hidden;
+
   .top {
     display: flex;
     justify-content: space-between;
@@ -22,9 +23,11 @@
       width: auto;
     }
   }
+
   .menuIcon:active {
     color: #3078ff;
   }
+
   .menuIcon {
     color: #525252;
     display: flex;
@@ -36,40 +39,51 @@
       background-size: cover;
       margin-left: 1rem;
     }
+
     .mobileIcon {
+      padding-top: 0.3rem 0.5rem 0 0;
+
       .mobileIconImg {
         width: auto;
         height: 1.4rem;
       }
     }
   }
+
   .menuData {
     display: grid;
     padding-top: 2rem;
     grid-template-columns: repeat(3, 1fr);
+
     .fw-bold();
+
     .menuItem {
       border-right: 1px solid #525252;
       text-align: center;
       font-size: 1rem;
       margin-bottom: 1.5rem;
+
       .name {
         .fw-bold();
         font-weight: 500;
         font-size: 1.3rem;
       }
+
       .noLink {
         color: #525252;
       }
+
       .menuTitle {
         font-weight: 400;
         padding: 1rem 0 0;
         color: #525252;
       }
     }
+
     .menuItem:nth-child(3n) {
       border: none;
     }
+
     .current {
       color: #1a79b3;
     }
@@ -99,13 +113,14 @@
   z-index: 999;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 .closeBtn {
   position: absolute;
-  top: 1.5rem;
+  top: 1rem;
   right: 1.5rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
   cursor: pointer;
   z-index: 1000;
   color: #3078ff;
@@ -115,17 +130,101 @@
   display: flex;
   flex: 1;
   margin-top: 4rem;
+
+  .GrandchildItem {
+    display: flex;
+    flex-direction: column;
+    padding: 0rem 2rem;
+
+    .GrandchildItemTitle {
+      padding-bottom: 0.5rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #525252;
+    }
+
+    .GrandchildItemSubTitle {
+      font-size: 1rem;
+      color: #525252;
+      line-height: 1.6;
+      overflow: scroll;
+
+      .extraContent {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .subExtraContent {
+          display: flex;
+          flex-direction: column;
+          grid-area: 1rem;
+
+          .thirdSubtitle {
+            color: #8b8b8b;
+            padding: 0 0.5rem;
+          }
+
+          .thirdTitle {
+            padding: 1rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            font-size: 0.8rem;
+
+            a {
+              font-size: 1.2rem;
+              font-weight: 400;
+              color: #3078ff;
+              cursor: pointer;
+            }
+          }
+
+          .thirdTitleLast {
+            padding: 1rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            font-size: 0.8rem;
+
+            a {
+              font-size: 1.2rem;
+              font-weight: 400;
+              color: #3078ff;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .menuLeft {
   width: 40%;
-  padding: 1rem 2rem;
+  padding: 1rem 0 1rem 2rem;
   overflow-y: auto;
+
+  .backBtn {
+    position: absolute;
+    top: 1.5rem;
+    left: 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #3078ff;
+    font-weight: bold;
+
+    &:hover {
+      color: #1a79b3;
+    }
+  }
 
   .parentItem {
     padding: 1rem;
     cursor: pointer;
     font-size: 1.2rem;
+    font-weight: 600;
     color: #525252;
 
     &:hover,
@@ -137,19 +236,20 @@
 }
 
 .menuRight {
-  width: 60%;
-  padding: 1rem 1rem;
+  width: 99%;
+  padding: 0rem 2rem;
   overflow-y: auto;
 
   .childItem {
     padding: 1rem;
     cursor: pointer;
     font-size: 1.2rem;
+    font-weight: 600;
     color: #525252;
 
     a {
-      font-size: 1rem;
-      color: #335697;
+      font-size: 1.2rem;
+      color: #525252;
 
       &:hover {
         color: #2773ff;

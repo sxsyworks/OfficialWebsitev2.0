@@ -1,4 +1,3 @@
-import Icon from '@/assets/imgs/contact/icon5.png';
 import { ContactMapAddr } from '@/utils/constant';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'umi';
@@ -16,11 +15,11 @@ const ContactMap = () => {
 
   useEffect(() => {
     // 创建地图
-    const tMap = new T.Map('mapDiv');
-    setMap(tMap);
-    tMap.disableScrollWheelZoom();
-    tMap.disableDoubleClickZoom();
-    tMap.disableDrag();
+    // const tMap = new T.Map('mapDiv');
+    // setMap(tMap);
+    // tMap.disableScrollWheelZoom();
+    // tMap.disableDoubleClickZoom();
+    // tMap.disableDrag();
     // TODO 这些事件失效，之前可使用，应该是天地图自身api问题导致
     // tMap.enableDrag();
     // 添加鼠标点击事件 失效可以通过.mapWrap .map的样式 取消样式pointer-events：none 来获取坐标
@@ -34,12 +33,12 @@ const ContactMap = () => {
     //   console.log(e.lnglat.getLng() + ',' + e.lnglat.getLat());
     // });
     //创建icon图片对象
-    const tIcon = new T.Icon({
-      iconUrl: Icon,
-      iconSize: new T.Point(32, 32),
-      iconAnchor: new T.Point(5, 5),
-    });
-    setIcon(tIcon);
+    // const tIcon = new T.Icon({
+    //   iconUrl: Icon,
+    //   iconSize: new T.Point(32, 32),
+    //   iconAnchor: new T.Point(5, 5),
+    // });
+    // setIcon(tIcon);
   }, []);
 
   useEffect(() => {
